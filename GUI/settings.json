@@ -1,0 +1,116 @@
+{
+   "tasks": [
+      {
+         "site": "deadstock.ca",
+         "proxyGroup": "Default",
+         "specificProxy": "",
+         "key": [
+            "yeezy",
+            "adidas"
+         ],
+         "neg": [
+            "450",
+            "onyx"
+         ],
+         "quantity": "1",
+         "size": "9,10",
+         "profile": "test profile",
+         "delay": "3000"
+      }
+   ],
+   "proxies": [
+      {
+         "proxyGroupName": "Default",
+         "proxyList": []
+      }
+   ],
+   "info": [
+      {
+         "id": "Test Profile",
+         "sameShipBill": true,
+         "email": "asurge2@gmail.com",
+         "oneCheckout": true,
+         "sFirstName": "Henry",
+         "sLastName": "Nguyen",
+         "sCountry": "Canada",
+         "sAdd1": "123 test st",
+         "sAdd2": "",
+         "sProvince": "Ontario",
+         "sCity": "Ottawa",
+         "sZip": "K1C6N1",
+         "bFirstName": "Henry",
+         "bLastName": "Nguyen",
+         "bCountry": "Canada",
+         "bAdd1": "123 test st",
+         "bAdd2": "",
+         "bProvince": "Ontario",
+         "bCity": "Ottawa",
+         "bZip": "K1C6N1",
+         "pFirstName": "Henry",
+         "pLastName": "Nguyen",
+         "pPhoneNumber": "6131234567",
+         "pCardNumber": "123412341234123",
+         "pCCV": "123",
+         "pMonth": "01",
+         "pYear": "2030"
+      },
+      {
+         "id": "Test 2",
+         "sameShipBill": false,
+         "email": "a",
+         "oneCheckout": true,
+         "sFirstName": "a",
+         "sLastName": "a",
+         "sCountry": "Canada",
+         "sAdd1": "a",
+         "sAdd2": "",
+         "sProvince": "a",
+         "sCity": "a",
+         "sZip": "a",
+         "bFirstName": "a",
+         "bLastName": "a",
+         "bCountry": "Canada",
+         "bAdd1": "a",
+         "bAdd2": "",
+         "bProvince": "a",
+         "bCity": "a",
+         "bZip": "a",
+         "pFirstName": "a",
+         "pLastName": "a",
+         "pPhoneNumber": "a",
+         "pCardNumber": "a",
+         "pCCV": "a",
+         "pMonth": "01",
+         "pYear": "2026"
+      },
+      {
+         "id": "Test 3",
+         "sameShipBill": false,
+         "email": "a",
+         "oneCheckout": false,
+         "sFirstName": "a",
+         "sLastName": "a",
+         "sCountry": "Canada",
+         "sAdd1": "a",
+         "sAdd2": "",
+         "sProvince": "a",
+         "sCity": "a",
+         "sZip": "a",
+         "bFirstName": "a",
+         "bLastName": "a",
+         "bCountry": "Canada",
+         "bAdd1": "a",
+         "bAdd2": "",
+         "bProvince": "a",
+         "bCity": "a",
+         "bZip": "a",
+         "pFirstName": "a",
+         "pLastName": "a",
+         "pPhoneNumber": "a",
+         "pCardNumber": "a",
+         "pCCV": "a",
+         "pMonth": "01",
+         "pYear": "2026"
+      }
+   ]
+}
