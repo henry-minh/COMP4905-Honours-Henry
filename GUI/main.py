@@ -3,8 +3,7 @@ import sys, os
 from PyQt6.QtWidgets import *
 import interface
 import json
-import profileFunctions
-import onLoadFunctions
+import profileFunctions,proxyFunctions,onLoadFunctions
 class page(QMainWindow):
     def __init__(self):
         #Load interface UI file & Hide Default TaskBar
@@ -38,7 +37,9 @@ class page(QMainWindow):
         self.extraClearBtn.clicked.connect(self.clickClearProfileBtn)
         self.editProfileBtn.clicked.connect(self.clickEditProfileBtn)
 
-
+        #Proxy Editor Buttons
+        self.proxyCreateUpdateBtn.clicked.connect(self.clickCreateProxyBtn)
+        self.proxyDeleteBtn.clicked.connect(self.clickDeleteProxyBtn)
 ##############################################
 #         On Load Function Invoctions        #
 ##############################################
@@ -122,10 +123,22 @@ class page(QMainWindow):
     def clickEditProfileBtn(self, text):
         profileFunctions.clickEditProfileBtn(self, text)
 
+#######################################
+#       Proxy Page Functions          #
+#######################################
+    def clickCreateProxyBtn(self, text):
+        proxyFunctions.clickCreateProxyBtn(self, text)
+
+    def clickDeleteProxyBtn(self, text):
+        proxyFunctions.clickDeleteProxyBtn(self, text)            
+
+    def clickComboProxyBtn(self, text):
+        proxyFunctions.clickComboProxyBtn(self, text) 
 
 #######################################
 #         Launch Application          #
 #######################################
+
 app = QApplication(sys.argv)
 window = page()
 window.show()
