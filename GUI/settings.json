@@ -21,7 +21,18 @@
    "proxies": [
       {
          "proxyGroupName": "Default",
-         "proxyList": []
+         "proxyList": [
+            "81.200.148.5:3190:hp7u1otc:0k6h0cga",
+            "81.200.148.6:3190:hp7u1otc:0k6h0cga",
+            "81.200.148.7:3190:hp7u1otc:0k6h0cga",
+            "81.200.148.8:3190:hp7u1otc:0k6h0cga"
+         ]
+      },
+      {
+         "proxyGroupName": "Test",
+         "proxyList": [
+            ""
+         ]
       }
    ],
    "info": [
@@ -58,7 +69,7 @@
          "id": "Test 2",
          "sameShipBill": false,
          "email": "a",
-         "oneCheckout": true,
+         "oneCheckout": false,
          "sFirstName": "a",
          "sLastName": "a",
          "sCountry": "Canada",

@@ -40,11 +40,12 @@ class page(QMainWindow):
         #Proxy Editor Buttons
         self.proxyCreateUpdateBtn.clicked.connect(self.clickCreateProxyBtn)
         self.proxyDeleteBtn.clicked.connect(self.clickDeleteProxyBtn)
+        self.proxyListComboBox.currentTextChanged.connect(self.clickComboProxyBtn)
 ##############################################
 #         On Load Function Invoctions        #
 ##############################################
         onLoadFunctions.loadProfileTableInitial(self)
-
+        onLoadFunctions.loadProxyPageInitial(self)
 
 ##############################################
 #     Minimize Maximize Clse Window          #
