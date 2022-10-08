@@ -13,25 +13,48 @@
             "onyx"
          ],
          "quantity": "1",
-         "size": "9,10",
-         "profile": "test profile",
+         "size": [
+            "9",
+            "10"
+         ],
+         "profile": "Test Profile",
+         "delay": "3000"
+      },
+      {
+         "site": "nrml.ca",
+         "proxyGroup": "Default",
+         "specificProxy": "",
+         "key": [
+            "yeezy",
+            "adidas"
+         ],
+         "neg": [
+            "450",
+            "onyx"
+         ],
+         "quantity": "1",
+         "size": [
+            "9",
+            "10"
+         ],
+         "profile": "Test Profile",
          "delay": "3000"
       }
    ],
    "proxies": [
       {
-         "proxyGroupName": "Default",
+         "proxyGroupName": "Local Host",
          "proxyList": [
-            "81.200.148.5:3190:hp7u1otc:0k6h0cga",
-            "81.200.148.6:3190:hp7u1otc:0k6h0cga",
-            "81.200.148.7:3190:hp7u1otc:0k6h0cga",
-            "81.200.148.8:3190:hp7u1otc:0k6h0cga"
+            ""
          ]
       },
       {
          "proxyGroupName": "Test",
          "proxyList": [
-            ""
+            "81.200.148.5:3190:hp7u1otc:0k6h0cga",
+            "81.200.148.6:3190:hp7u1otc:0k6h0cga",
+            "81.200.148.7:3190:hp7u1otc:0k6h0cga",
+            "81.200.148.8:3190:hp7u1otc:0k6h0cga"
          ]
       }
    ],

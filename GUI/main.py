@@ -1,9 +1,10 @@
 from PyQt6 import uic,  QtCore
 import sys, os
 from PyQt6.QtWidgets import *
+from PyQt6 import QtWidgets
 import interface
 import json
-import profileFunctions,proxyFunctions,onLoadFunctions
+import profileFunctions,proxyFunctions,onLoadFunctions,taskFunctions
 class page(QMainWindow):
     def __init__(self):
         #Load interface UI file & Hide Default TaskBar
@@ -12,11 +13,20 @@ class page(QMainWindow):
         self.setWindowTitle("bar hide")
         self.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)
+#self.checkboxes = []
+
+##############################################
+#         On Load Function Invoctions        #
+##############################################
+        onLoadFunctions.loadVariablesInitial(self)
+        onLoadFunctions.loadProfileTableInitial(self)
+        onLoadFunctions.loadProxyPageInitial(self)
+        onLoadFunctions.loadTaskPageInitial(self)
 
 
-        ##############################################
-        #                 connects                   #
-        ##############################################    
+##############################################
+#                 connects                   #
+##############################################    
         # TaskBar Functions Connect    
         self.closeBtn.clicked.connect(self.clickClose)   
         self.restoreBtn.clicked.connect(self.clickMaximize)    
@@ -31,21 +41,23 @@ class page(QMainWindow):
         self.notificationCloseBtn.clicked.connect(self.clickNotificationCloseBtn)   
         self.hidden=False
 
-        #Profile Editor Buttons
+        #Profile Page Buttons
         self.extraCreateProfileBtn.clicked.connect(self.clickCreateProfileBtn)
         self.deleteProfileBtn.clicked.connect(self.clickDeleteProfileBtn)
         self.extraClearBtn.clicked.connect(self.clickClearProfileBtn)
         self.editProfileBtn.clicked.connect(self.clickEditProfileBtn)
 
-        #Proxy Editor Buttons
+        #Proxy Page Buttons
         self.proxyCreateUpdateBtn.clicked.connect(self.clickCreateProxyBtn)
         self.proxyDeleteBtn.clicked.connect(self.clickDeleteProxyBtn)
         self.proxyListComboBox.currentTextChanged.connect(self.clickComboProxyBtn)
-##############################################
-#         On Load Function Invoctions        #
-##############################################
-        onLoadFunctions.loadProfileTableInitial(self)
-        onLoadFunctions.loadProxyPageInitial(self)
+
+        #Task Page Buttons
+        self.taskPageStartBtn.clicked.connect(self.clickStartTaskBtn)
+        self.taskPageStopBtn.clicked.connect(self.clickStopTaskBtn)
+        self.taskPageDeleteBtn.clicked.connect(self.clickDeleteTaskBtn)
+        self.taskPageEditBtn.clicked.connect(self.clickEditTaskBtn)
+        self.createTaskBtn.clicked.connect(self.clickCreateTaskBtn)
 
 ##############################################
 #     Minimize Maximize Clse Window          #
@@ -124,6 +136,7 @@ class page(QMainWindow):
     def clickEditProfileBtn(self, text):
         profileFunctions.clickEditProfileBtn(self, text)
 
+
 #######################################
 #       Proxy Page Functions          #
 #######################################
@@ -135,6 +148,25 @@ class page(QMainWindow):
 
     def clickComboProxyBtn(self, text):
         proxyFunctions.clickComboProxyBtn(self, text) 
+
+
+#######################################
+#        Task Page Functions          #
+#######################################
+    def clickStartTaskBtn(self, text):
+        taskFunctions.clickStartTaskBtn(self, text)
+
+    def clickStopTaskBtn(self, text):
+        taskFunctions.clickStopTaskBtn(self, text)            
+
+    def clickDeleteTaskBtn(self, text):
+        taskFunctions.clickDeleteTaskBtn(self, text) 
+
+    def clickEditTaskBtn(self, text):
+        taskFunctions.clickEditTaskBtn(self, text)
+
+    def clickCreateTaskBtn(self, text):
+        taskFunctions.clickCreateTaskBtn(self, text)  
 
 #######################################
 #         Launch Application          #

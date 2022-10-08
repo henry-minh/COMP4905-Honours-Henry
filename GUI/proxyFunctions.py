@@ -38,6 +38,9 @@ def clickCreateProxyBtn(self, event):
     f=open('./GUI/settings.json',"w")
     json.dump(data, f, indent = 3)
     f.close()
+
+    
+    onLoadFunctions.loadTaskPageInitial(self)
     print("end create button")
 
 
@@ -76,3 +79,4 @@ def clickDeleteProxyBtn(self, event):
     json.dump(data, f,indent=3)
     f.close()
     onLoadFunctions.loadProxyPageInitial(self)
+    onLoadFunctions.loadTaskPageInitial(self)

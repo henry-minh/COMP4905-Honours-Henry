@@ -2,6 +2,7 @@ import json
 from PyQt6.QtWidgets import *
 import onLoadFunctions
 
+
 ##############################################
 #            Delete Profile Button           #
 ############################################## 
@@ -25,6 +26,7 @@ def clickDeleteProfileBtn(self, event):
         json.dump(data, f,indent=3)
         f.close()
     onLoadFunctions.loadProfileTableInitial(self)
+    onLoadFunctions.loadTaskPageInitial(self)
 
 
 ##############################################
@@ -145,11 +147,12 @@ def clickCreateProfileBtn(self, event):
     else:
         print("Invlaid Profile")
     onLoadFunctions.loadProfileTableInitial(self)
+    onLoadFunctions.loadTaskPageInitial(self)
+
 
 ##############################################
 #             Profile Clear Button           #
 ############################################## 
-
 def clickClearProfileBtn(self, event):
     self.extraProfileNameInput.clear()
     self.paymentEmailInput.clear()
