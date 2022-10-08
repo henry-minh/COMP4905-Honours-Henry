@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1321</width>
-    <height>635</height>
+    <width>1612</width>
+    <height>629</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -271,26 +271,6 @@ color:black;
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="proxiesBtn">
-               <property name="toolTip">
-                <string>Proxies</string>
-               </property>
-               <property name="text">
-                <string>Proxies</string>
-               </property>
-               <property name="icon">
-                <iconset resource="feather/newIcons.qrc">
-                 <normaloff>:/feather/database.svg</normaloff>:/feather/database.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>24</width>
-                 <height>24</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
               <widget class="QPushButton" name="profilesBtn">
                <property name="toolTip">
                 <string>Profiles</string>
@@ -301,6 +281,26 @@ color:black;
                <property name="icon">
                 <iconset resource="feather/newIcons.qrc">
                  <normaloff>:/feather/users.svg</normaloff>:/feather/users.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>24</width>
+                 <height>24</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="proxiesBtn">
+               <property name="toolTip">
+                <string>Proxies</string>
+               </property>
+               <property name="text">
+                <string>Proxies</string>
+               </property>
+               <property name="icon">
+                <iconset resource="feather/newIcons.qrc">
+                 <normaloff>:/feather/database.svg</normaloff>:/feather/database.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -530,7 +530,7 @@ color:black;
               <item alignment="Qt::AlignTop">
                <widget class="QWidget" name="createTasksPageSubContainer1" native="true">
                 <layout class="QVBoxLayout" name="verticalLayout_31">
-                 <item>
+                 <item alignment="Qt::AlignTop">
                   <widget class="QTextEdit" name="keyWordInput">
                    <property name="maximumSize">
                     <size>
@@ -543,106 +543,110 @@ color:black;
                    </property>
                   </widget>
                  </item>
-                </layout>
-               </widget>
-              </item>
-              <item alignment="Qt::AlignTop">
-               <widget class="QWidget" name="createTasksPageSubContainer2" native="true">
-                <layout class="QHBoxLayout" name="horizontalLayout_23">
-                 <item alignment="Qt::AlignLeft|Qt::AlignTop">
-                  <widget class="QWidget" name="taskInfoContainer" native="true">
-                   <property name="minimumSize">
-                    <size>
-                     <width>160</width>
-                     <height>0</height>
-                    </size>
-                   </property>
-                   <layout class="QVBoxLayout" name="verticalLayout_32">
-                    <property name="spacing">
-                     <number>60</number>
-                    </property>
-                    <item>
-                     <widget class="QLineEdit" name="homePageInput">
-                      <property name="placeholderText">
-                       <string>HomePage URL</string>
+                 <item>
+                  <widget class="QWidget" name="createTasksPageSubContainer2" native="true">
+                   <layout class="QHBoxLayout" name="horizontalLayout_23">
+                    <item alignment="Qt::AlignLeft|Qt::AlignTop">
+                     <widget class="QWidget" name="taskInfoContainer" native="true">
+                      <property name="minimumSize">
+                       <size>
+                        <width>160</width>
+                        <height>0</height>
+                       </size>
                       </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_32">
+                       <property name="spacing">
+                        <number>60</number>
+                       </property>
+                       <item>
+                        <widget class="QLineEdit" name="homePageInput">
+                         <property name="placeholderText">
+                          <string>HomePage URL</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="sizeInput">
+                         <property name="placeholderText">
+                          <string>Size</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="specificProxyInput">
+                         <property name="placeholderText">
+                          <string>Specific Proxy (Optional)</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="delayInput">
+                         <property name="placeholderText">
+                          <string>Delay (ms)</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="createTaskBtn">
+                         <property name="text">
+                          <string>Create Task</string>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
-                    <item>
-                     <widget class="QLineEdit" name="sizeInput">
-                      <property name="placeholderText">
-                       <string>Size</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="quantiyInput">
-                      <property name="placeholderText">
-                       <string>Quantity</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="specificProxyInput">
-                      <property name="placeholderText">
-                       <string>Specific Proxy (Optional)</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLineEdit" name="delayInput">
-                      <property name="placeholderText">
-                       <string>Delay (ms)</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QPushButton" name="createTaskBtn">
-                      <property name="text">
-                       <string>Create Task</string>
-                      </property>
-                     </widget>
-                    </item>
-                   </layout>
-                  </widget>
-                 </item>
-                 <item alignment="Qt::AlignTop">
-                  <widget class="QWidget" name="profileProxySelectionContainer" native="true">
-                   <layout class="QVBoxLayout" name="verticalLayout_33">
-                    <item alignment="Qt::AlignHCenter">
-                     <widget class="QLabel" name="profileSelectionLabel">
-                      <property name="font">
-                       <font>
-                        <bold>true</bold>
-                        <underline>true</underline>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Profile Selection</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QWidget" name="profileSelectionContainer" native="true">
-                      <layout class="QVBoxLayout" name="verticalLayout_38"/>
-                     </widget>
-                    </item>
-                    <item alignment="Qt::AlignHCenter">
-                     <widget class="QLabel" name="profileProxyGroupLabel">
-                      <property name="font">
-                       <font>
-                        <bold>true</bold>
-                        <underline>true</underline>
-                       </font>
-                      </property>
-                      <property name="text">
-                       <string>Proxy Group Selection</string>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QWidget" name="proxySelectionContainer" native="true">
-                      <layout class="QVBoxLayout" name="verticalLayout_39"/>
+                    <item alignment="Qt::AlignTop">
+                     <widget class="QWidget" name="profileProxySelectionContainer" native="true">
+                      <layout class="QVBoxLayout" name="verticalLayout_33">
+                       <item alignment="Qt::AlignHCenter">
+                        <widget class="QLabel" name="profileProxyGroupLabel">
+                         <property name="font">
+                          <font>
+                           <bold>true</bold>
+                           <underline>true</underline>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Proxy Group Selection</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QWidget" name="proxySelectionContainer" native="true">
+                         <layout class="QVBoxLayout" name="verticalLayout_39">
+                          <item>
+                           <widget class="QComboBox" name="taskProxyGroupComboBox">
+                            <property name="currentText">
+                             <string/>
+                            </property>
+                            <property name="placeholderText">
+                             <string>Select a Proxy Group</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item alignment="Qt::AlignHCenter">
+                        <widget class="QLabel" name="profileSelectionLabel">
+                         <property name="font">
+                          <font>
+                           <bold>true</bold>
+                           <underline>true</underline>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Profile Selection</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QWidget" name="profileSelectionContainer" native="true">
+                         <layout class="QVBoxLayout" name="verticalLayout_38"/>
+                        </widget>
+                       </item>
+                      </layout>
                      </widget>
                     </item>
                    </layout>
@@ -1254,7 +1258,7 @@ color:black;
        <property name="bottomMargin">
         <number>0</number>
        </property>
-       <item alignment="Qt::AlignTop">
+       <item>
         <widget class="QWidget" name="headerContainer" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_5">
           <property name="leftMargin">
@@ -1282,7 +1286,7 @@ color:black;
               <number>6</number>
              </property>
              <property name="leftMargin">
-              <number>0</number>
+              <number>3</number>
              </property>
              <property name="topMargin">
               <number>0</number>
@@ -1854,7 +1858,7 @@ color:black;
                     <item>
                      <widget class="QPushButton" name="webhookTestBtn">
                       <property name="text">
-                       <string>TestWebhook</string>
+                       <string>Test Webhook (Save)</string>
                       </property>
                      </widget>
                     </item>

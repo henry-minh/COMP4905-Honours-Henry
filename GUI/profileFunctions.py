@@ -2,7 +2,6 @@ import json
 from PyQt6.QtWidgets import *
 import onLoadFunctions
 
-
 ##############################################
 #            Delete Profile Button           #
 ############################################## 
@@ -15,11 +14,15 @@ def clickDeleteProfileBtn(self, event):
     if r>=0:
         profileSelected= self.profileTable.item(r,0).text()
         for i in range (0,len(data['info'])):
-            print("break")
             if data['info'][i].get("id")==profileSelected:
                 del data['info'][i]
                 break
         f.close()
+
+    #If A Task Uses A Profile that gets deleted, we need delete any affected tasks
+    for i in range(len(data['tasks'])-1,-1,-1):
+        if(data['tasks'][i]['profile']==profileSelected):
+            del data['tasks'][i]
 
         #OverWriting settings.json
         f=open('./GUI/settings.json',"w")
@@ -73,8 +76,6 @@ def clickCreateProfileBtn(self, event):
         data=json.load(f)    
         #Check if we update an existing profile or append a brand new one to the json file
         for i in range(0,len(data['info'])):
-            print(data['info'][i].get('id'))
-
             if(data['info'][i].get('id'))==self.extraProfileNameInput.text():
                 doesProfileExist=True
                 data['info'][i]["sameShipBill"]= False  #same ship bill
@@ -140,7 +141,6 @@ def clickCreateProfileBtn(self, event):
             })
         f.close()
 
-        #Update settings.json file
         f=open('./GUI/settings.json',"w")
         json.dump(data, f, indent = 3)
         f.close()
@@ -187,7 +187,6 @@ def clickClearProfileBtn(self, event):
 ############################################## 
 def clickEditProfileBtn(self, event):
     self.clickClearProfileBtn(self)
-    print('Click Edit Button')
     f=open('./GUI/settings.json',"r")
     data=json.load(f)
 
@@ -236,6 +235,5 @@ def clickEditProfileBtn(self, event):
                 self.paymentMonthCombo.setCurrentIndex(index)   
                 index=self.paymentYearCombo.findText((data['info'][i].get("pYear")))
                 self.paymentYearCombo.setCurrentIndex(index)     
-
                 break
         f.close()

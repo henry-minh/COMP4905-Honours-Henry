@@ -1,8 +1,8 @@
 {
    "tasks": [
       {
-         "site": "deadstock.ca",
-         "proxyGroup": "Default",
+         "site": "https://deadstock.ca/",
+         "proxyGroup": "Local Host",
          "specificProxy": "",
          "key": [
             "yeezy",
@@ -12,7 +12,6 @@
             "450",
             "onyx"
          ],
-         "quantity": "1",
          "size": [
             "9",
             "10"
@@ -21,8 +20,8 @@
          "delay": "3000"
       },
       {
-         "site": "nrml.ca",
-         "proxyGroup": "Default",
+         "site": "https://nrml.ca/",
+         "proxyGroup": "Test",
          "specificProxy": "",
          "key": [
             "yeezy",
@@ -32,12 +31,11 @@
             "450",
             "onyx"
          ],
-         "quantity": "1",
          "size": [
             "9",
             "10"
          ],
-         "profile": "Test Profile",
+         "profile": "Test 2",
          "delay": "3000"
       }
    ],
@@ -145,6 +143,11 @@
          "pCCV": "a",
          "pMonth": "01",
          "pYear": "2026"
+      }
+   ],
+   "settings": [
+      {
+         "webhook": "Webhook Test"
       }
    ]
 }

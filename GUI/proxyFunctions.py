@@ -9,8 +9,7 @@ def clickCreateProxyBtn(self, event):
     doesProxyGroupExist = False
     proxyListInput = []
     proxyListInput=self.editProxyInput.toPlainText().split(',')
-    print(proxyListInput)
-    print("proxy group create button pressed")
+
     #base case, no name specified
     if self.proxyGroupInput.text()=="":
         return
@@ -21,16 +20,10 @@ def clickCreateProxyBtn(self, event):
         if(data['proxies'][i]['proxyGroupName']==self.proxyGroupInput.text()):
             doesProxyGroupExist=True
             data['proxies'][i]['proxyList'].clear()
-            for j in range (0,len(proxyListInput)):
-                
+            for j in range (0,len(proxyListInput)):     
                 data['proxies'][i]['proxyList'].append(proxyListInput[j])
 
-            #data['proxies'][i]['proxyList'].append({self.editProxyInput.toPlainText()
-  
-           
     if doesProxyGroupExist == False:
-    
-        print(proxyListInput)
         data['proxies'].append ({ 
             "proxyGroupName":self.proxyGroupInput.text(),
             "proxyList":proxyListInput
@@ -38,17 +31,14 @@ def clickCreateProxyBtn(self, event):
     f=open('./GUI/settings.json',"w")
     json.dump(data, f, indent = 3)
     f.close()
-
-    
     onLoadFunctions.loadTaskPageInitial(self)
-    print("end create button")
+
 
 
 ##############################################
 #             Proxy ComboBox                 #
 ############################################## 
 def clickComboProxyBtn(self, event):
-    print("proxy group combobox pressed")
     self.editProxyInput.clear()
     self.proxyGroupInput.setText(self.proxyListComboBox.currentText())
     f=open('./GUI/settings.json',"r")
@@ -56,7 +46,6 @@ def clickComboProxyBtn(self, event):
     f.close()
     for i in range (0,len(data['proxies'])):
         if(data['proxies'][i]['proxyGroupName']==self.proxyGroupInput.text()):
-            print("match")
             for j in range(0,len(data['proxies'][i]['proxyList'])):
                 print(data['proxies'][i]['proxyList'][j])
                 self.editProxyInput.insertPlainText(data['proxies'][i]['proxyList'][j])
@@ -71,12 +60,19 @@ def clickDeleteProxyBtn(self, event):
     f=open('./GUI/settings.json',"r")
     data=json.load(f)
     f.close()
+    
     for i in range(0,len(data['proxies'])):
         if(data['proxies'][i].get("proxyGroupName")==self.proxyGroupInput.text()):
             del data['proxies'][i]
             break
+
+    for i in range(len(data['tasks'])-1,-1,-1):
+        if(data['tasks'][i]['proxyGroup']==self.proxyGroupInput.text()):
+            del data['tasks'][i]
+
     f=open('./GUI/settings.json',"w")
     json.dump(data, f,indent=3)
     f.close()
+    #If A Task Uses A Proxy Group that gets deleted, we need delete any affected tasks
     onLoadFunctions.loadProxyPageInitial(self)
     onLoadFunctions.loadTaskPageInitial(self)
