@@ -1,5 +1,6 @@
 #pip install pandas
 import requests
+
 import pandas as pd
 from discord_webhook import DiscordWebhook
 ## shopifyATC
@@ -14,7 +15,7 @@ from discord_webhook import DiscordWebhook
 
 
 ## Product Specification Parameters
-keywords =["cortez"]
+keywords =["adidas","-terrex","-qntm"]
 randomFlag =False
 sizeInput=["7","7.5","8","9"]
 # converting user key words to lower  case
@@ -22,14 +23,15 @@ for i in range (len(keywords)):
     keywords[i]=keywords[i].lower()
 
 # Variables used for Veritfication
-productFoundBool=False
+
 validCartId = False
 itemDNE = False     # DNE => Does not Exist
 checkoutSize =0
 
 productList = []    #full product list that gets put in excel
-webLink="https://www.capsuletoronto.com/cart/"
+webLink="https://www.deadstock.com/cart/"
 
+size=""
 #if product not found and json isnt empty Loop through other 5 pages
 ## Variables used for monitoring
 pageNum=0
@@ -37,7 +39,7 @@ pageNum=0
 while itemDNE == False:
     print("test")
     pageNum +=1
-    url= "https://www.capsuletoronto.com/products.json?limit=1000&page="
+    url= "https://deadstock.ca/products.json?limit=1000&page="
     url+=str(pageNum)
     r = requests.get(url)
     data = r.json()
@@ -54,49 +56,41 @@ while itemDNE == False:
 
         if productType=="Footwear":
         #get URL for product if it matches keyword
-            if productFoundBool==False:
-                for productKey in keywords:
-                    if productKey[0]!="-":
-                        if not productKey in handle.lower():
-                            keywordCheckBool =False;
-                            print("False Check 1")
-                    else: 
-                        if productKey in handle.lower():
-                            keywordCheckBool =False;
-                            print("False Check 2")
-                            # Found Matching Item. Now gets Info on all sizes                
-                if keywordCheckBool ==True:
-                    print("Pass Check" +handle)
-                    
-                    for variant in item ["variants"]:
-                        itemId = variant['id']
-                        price = variant['price']
-                        sku = variant ['sku']
-                        available = variant ['available']
-                        if variant ['option1'] in sizeInput:
-                            size=variant ['option1']
-                        if variant ['option2'] in sizeInput:
-                            size=variant ['option2']
-                        if variant ['option3'] in sizeInput:
-                            size=variant ['option3']
-                        #size = variant ['option1']
-                        product = {
-                        'title': title,
-                        'item id': itemId,
-                        'productType': productType,
-                        'handle': handle,
-                        'size': size,
-                        'sku': sku,
-                        'price': price,
-                        'available': available
-                        }
-                        productList.append(product)
-                        if (available==True and validCartId==False and size in sizeInput):
-                            webLink+=str(itemId)+":1"
-                            validCartId=True
-                            checkoutSize=size
-                    productFoundBool=True
-                    itemDNE = True
+        
+            for productKey in keywords:
+                if productKey[0]!="-":
+                    if not productKey in handle.lower():
+                        keywordCheckBool =False;
+                        print("False Check 1")
+                else: 
+                    if productKey in handle.lower():
+                        keywordCheckBool =False;
+                        print("False Check 2")
+            # Found Matching Item. Now gets Info on all sizes                
+            if keywordCheckBool ==True:
+                print("Pass Check" +handle)
+                
+                for variant in item ["variants"]:
+                    itemId = variant['id']
+                    price = variant['price']
+                    sku = variant ['sku']
+                    available = variant ['available']
+                    if variant ['option1'] in sizeInput:
+                        size=variant ['option1']
+                    if variant ['option2'] in sizeInput:
+                        size=variant ['option2']
+                    if variant ['option3'] in sizeInput:
+                        size=variant ['option3']
+                    #size = variant ['option1']
+
+                    if (available==True and validCartId==False and size in sizeInput):
+                        webLink+=str(itemId)+":1"
+                        validCartId=True
+                        checkoutSize=size
+                        break
+                
+                itemDNE = True
+            
 
 
 if(validCartId==True):

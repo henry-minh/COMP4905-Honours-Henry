@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import *
 from PyQt6 import QtWidgets
 import interface
 import json
-import profileFunctions,proxyFunctions,onLoadFunctions,taskFunctions
+import profileFunctions,proxyFunctions,onLoadFunctions,taskFunctions,taskStartStopFunctions,settingFunctions
 class page(QMainWindow):
     def __init__(self):
         #Load interface UI file & Hide Default TaskBar
@@ -22,6 +22,7 @@ class page(QMainWindow):
         onLoadFunctions.loadProfileTableInitial(self)
         onLoadFunctions.loadProxyPageInitial(self)
         onLoadFunctions.loadTaskPageInitial(self)
+        onLoadFunctions.loadSettingPageInitial(self)
 
 
 ##############################################
@@ -58,6 +59,11 @@ class page(QMainWindow):
         self.taskPageDeleteBtn.clicked.connect(self.clickDeleteTaskBtn)
         self.taskPageEditBtn.clicked.connect(self.clickEditTaskBtn)
         self.createTaskBtn.clicked.connect(self.clickCreateTaskBtn)
+
+        #Settings Page Buttons
+        self.webhookTestBtn.clicked.connect(self.clickWebHookBtn)
+
+
 
 ##############################################
 #     Minimize Maximize Clse Window          #
@@ -154,10 +160,10 @@ class page(QMainWindow):
 #        Task Page Functions          #
 #######################################
     def clickStartTaskBtn(self, text):
-        taskFunctions.clickStartTaskBtn(self, text)
+        taskStartStopFunctions.clickStartTaskBtn(self, text)
 
     def clickStopTaskBtn(self, text):
-        taskFunctions.clickStopTaskBtn(self, text)            
+        taskStartStopFunctions.clickStopTaskBtn(self, text)            
 
     def clickDeleteTaskBtn(self, text):
         taskFunctions.clickDeleteTaskBtn(self, text) 
@@ -167,6 +173,14 @@ class page(QMainWindow):
 
     def clickCreateTaskBtn(self, text):
         taskFunctions.clickCreateTaskBtn(self, text)  
+
+
+#######################################
+#      Settings Page Functions        #
+#######################################
+    def clickWebHookBtn(self, text):
+        settingFunctions.clickWebHookBtn(self, text)  
+
 
 #######################################
 #         Launch Application          #

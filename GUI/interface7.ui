@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1612</width>
-    <height>629</height>
+    <height>630</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -725,7 +725,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="shippingFirstNameInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>First Name</string>
@@ -735,7 +735,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="shippingAddress1Input">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>Address 1</string>
@@ -745,7 +745,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="shippingCityInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>City</string>
@@ -761,7 +761,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="shippingLastNameInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>Last Name</string>
@@ -778,7 +778,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="shippingZipCodeInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>Zip Code</string>
@@ -811,7 +811,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="shippingProvinceInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>Province/State</string>
@@ -852,7 +852,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="billingFirstNameInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>First Name</string>
@@ -862,7 +862,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="billingAddress1Input">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>Address 1</string>
@@ -872,7 +872,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="billingCityInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>City</string>
@@ -888,7 +888,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="billingLastNameInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>Last Name</string>
@@ -905,7 +905,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="billingZipCodeInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>Zip Code</string>
@@ -938,7 +938,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="billingProvinceInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>Province/State</string>
@@ -979,7 +979,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="paymentFirstNameInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>First Name</string>
@@ -989,7 +989,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="paymentCardNumberInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>Card Number</string>
@@ -1072,7 +1072,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="paymentLastNameInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>Last Name</string>
@@ -1082,7 +1082,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="paymentCCVInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>CCV</string>
@@ -1150,7 +1150,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="paymentPhoneInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>Phone Number</string>
@@ -1160,7 +1160,7 @@ color:black;
                        <item>
                         <widget class="QLineEdit" name="paymentEmailInput">
                          <property name="text">
-                          <string>a</string>
+                          <string/>
                          </property>
                          <property name="placeholderText">
                           <string>Email Address</string>
@@ -1981,7 +1981,7 @@ color:black;
              <item>
               <widget class="QLabel" name="footerLabel">
                <property name="text">
-                <string>Henry Nguyen October 3 2022</string>
+                <string>Henry Nguyen October 10 2022</string>
                </property>
               </widget>
              </item>

@@ -2,32 +2,16 @@ import json
 import onLoadFunctions
 from PyQt6.QtWidgets import *
 
-##############################################
-#            Start Task Button             #
-############################################## 
-def clickStartTaskBtn(self, event):
-    print("Clicked Start Task Button")
-
-
-##############################################
-#             Stop Task Button               #
-############################################## 
-def clickStopTaskBtn(self, event):
-    print("Clicked Stop Task Button")
-
 
 ##############################################
 #            Delete Task Button              #
 ############################################## 
 def clickDeleteTaskBtn(self, event):
-    print("Clicked Delete Task Button")
-
     f=open('./GUI/settings.json',"r")
     data=json.load(f)
     f.close()
 
     r = self.taskTable.currentRow()
-    print(r)
     if r>=0:
         del data['tasks'][r]
         f=open('./GUI/settings.json',"w")
@@ -40,7 +24,6 @@ def clickDeleteTaskBtn(self, event):
 #            Edit Task Button                #
 ############################################## 
 def clickEditTaskBtn(self, event):
-    print("Clicked Edit Task Button")
     f=open('./GUI/settings.json',"r")
     data=json.load(f)
     f.close()
@@ -54,9 +37,9 @@ def clickEditTaskBtn(self, event):
         # Very Lazy Way of edit updating size and keyword input (not good practice if I channge the table around)
         self.keyWordInput.setText(self.taskTable.item(r,1).text())
         self.sizeInput.setText(self.taskTable.item(r,2).text())
-    for i in range(0,len(data['proxies'])):
-        if (data['proxies'][i]['proxyGroupName']==self.taskTable.item(r,4).text()):
-            self.taskProxyGroupComboBox.setCurrentIndex(i)
+        for i in range(0,len(data['proxies'])):
+            if (data['proxies'][i]['proxyGroupName']==self.taskTable.item(r,4).text()):
+                self.taskProxyGroupComboBox.setCurrentIndex(i)
 
         
 
@@ -64,14 +47,10 @@ def clickEditTaskBtn(self, event):
 #            Create Task Button              #
 ############################################## 
 def clickCreateTaskBtn(self, event):
-    print("Clicked Create Task Button")
-
     isValidTask=True
     profileSelected=False
     proxySelected=False
     taskValueList=[]
-    #keyList=[]
-    #sizeList=[]
     taskValueList.append(self.keyWordInput.toPlainText())
     taskValueList.append(self.homePageInput.text())
     taskValueList.append(self.sizeInput.text())
@@ -86,27 +65,25 @@ def clickCreateTaskBtn(self, event):
     for i in range(0,len(self.profileCheckboxes)):
         if(self.profileCheckboxes[i].isChecked()):
             profileSelected=True
-
     
     if(profileSelected==False ):
         return
     
     keyList = self.keyWordInput.toPlainText().split(',')
-
     sizeList=self.sizeInput.text().split(',')
     posKeyList=[]
     negKeyList=[]
+
     for i in range(0,len(keyList)):
         if(keyList[i][0]=="-"):
-            negKeyList.append(keyList[i])
+            negKeyList.append(keyList[i][1:])
         else:
             posKeyList.append(keyList[i])
-
-
 
     f=open('./GUI/settings.json',"r")
     data=json.load(f)  
     f.close()
+
 
     for i in range(0,len(self.profileCheckboxes)):    
         if(self.profileCheckboxes[i].isChecked()):
@@ -125,5 +102,4 @@ def clickCreateTaskBtn(self, event):
     json.dump(data, f, indent = 3)
     f.close()        
     onLoadFunctions.loadTaskPageInitial(self)
-    #Adding settings to tasks.json
 

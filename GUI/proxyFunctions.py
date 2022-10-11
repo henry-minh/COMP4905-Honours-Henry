@@ -31,6 +31,7 @@ def clickCreateProxyBtn(self, event):
     f=open('./GUI/settings.json',"w")
     json.dump(data, f, indent = 3)
     f.close()
+    onLoadFunctions.loadProxyPageInitial(self)
     onLoadFunctions.loadTaskPageInitial(self)
 
 
@@ -60,7 +61,7 @@ def clickDeleteProxyBtn(self, event):
     f=open('./GUI/settings.json',"r")
     data=json.load(f)
     f.close()
-    
+
     for i in range(0,len(data['proxies'])):
         if(data['proxies'][i].get("proxyGroupName")==self.proxyGroupInput.text()):
             del data['proxies'][i]

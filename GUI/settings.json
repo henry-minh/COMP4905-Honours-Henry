@@ -5,14 +5,14 @@
          "proxyGroup": "Local Host",
          "specificProxy": "",
          "key": [
-            "yeezy",
             "adidas"
          ],
          "neg": [
-            "450",
-            "onyx"
+            "terrex",
+            "qntm"
          ],
          "size": [
+            "8",
             "9",
             "10"
          ],
@@ -20,22 +20,21 @@
          "delay": "3000"
       },
       {
-         "site": "https://nrml.ca/",
-         "proxyGroup": "Test",
+         "site": "https://www.deadstock.ca/",
+         "proxyGroup": "Local Host",
          "specificProxy": "",
          "key": [
-            "yeezy",
-            "adidas"
+            "dunk",
+            "high",
+            "prm"
          ],
          "neg": [
-            "450",
-            "onyx"
+            "wolf"
          ],
          "size": [
-            "9",
-            "10"
+            "9"
          ],
-         "profile": "Test 2",
+         "profile": "Test Profile",
          "delay": "3000"
       }
    ],
@@ -48,6 +47,15 @@
       },
       {
          "proxyGroupName": "Test",
+         "proxyList": [
+            "81.200.148.5:3190:hp7u1otc:0k6h0cga",
+            "81.200.148.6:3190:hp7u1otc:0k6h0cga",
+            "81.200.148.7:3190:hp7u1otc:0k6h0cga",
+            "81.200.148.8:3190:hp7u1otc:0k6h0cga"
+         ]
+      },
+      {
+         "proxyGroupName": "Test 2",
          "proxyList": [
             "81.200.148.5:3190:hp7u1otc:0k6h0cga",
             "81.200.148.6:3190:hp7u1otc:0k6h0cga",
@@ -145,9 +153,5 @@
          "pYear": "2026"
       }
    ],
-   "settings": [
-      {
-         "webhook": "Webhook Test"
-      }
-   ]
+   "webhook": "https://discord.com/api/webhooks/1028937411679490050/vzkAPCBSo5PJ39YvWeyoo7CuNHue_BnDyTR_1v8W_v94macTC-UbiSvhQZZc7OXrPtiP"
 }

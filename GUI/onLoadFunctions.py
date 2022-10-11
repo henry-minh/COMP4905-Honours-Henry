@@ -31,6 +31,7 @@ def loadProxyPageInitial(self):
     
     self.proxyListComboBox.clear()
     self.proxyGroupInput.clear()
+    
     f=open('./GUI/settings.json',"r")
     data=json.load(f)  
     for i in data['proxies']:
@@ -42,7 +43,7 @@ def loadProxyPageInitial(self):
 #        Onload Task Creation Page           #
 ############################################## 
 def loadTaskPageInitial(self):
-
+    self.taskProxyGroupComboBox.clear()
     #Clear Task Table
     for i in range(self.taskTable.rowCount()-1,-1,-1):
         self.taskTable.removeRow(i)
@@ -76,7 +77,7 @@ def loadTaskPageInitial(self):
             keywords+="-"+i['neg'][j]+","
         for j in range (0,len(i['size'])):
             sizes+=i['size'][j]+","
-            
+
         keywords = keywords.rstrip(keywords[-1])
         sizes = sizes.rstrip(sizes[-1])
 
@@ -88,10 +89,10 @@ def loadTaskPageInitial(self):
     f.close()      
     self.taskTable.resizeColumnsToContents()
 
+
 ##############################################
 #    Task Page Supplementary Fucntions       #
 ############################################## 
-
 def addProfileCheckbox(self):
     checkbox = QtWidgets.QCheckBox()
     self.profileCheckboxes.append(checkbox)
@@ -104,4 +105,12 @@ def addProxyCheckbox(self):
 
 def loadVariablesInitial(self):
     self.profileCheckboxes = []
-    #self.proxyCheckboxes = []
+
+##############################################
+#    Task Page Supplementary Fucntions       #
+############################################## 
+def loadSettingPageInitial(self):
+    f=open('./GUI/settings.json',"r")
+    data=json.load(f)
+    f.close()    
+    self.webhookInput.setText(data['webhook'])
