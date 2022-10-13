@@ -36,7 +36,7 @@ def clickStartTaskBtn(self, event):
     
     
     if rowSelected>=0:
-        self.taskTable.setItem(rowSelected,5,QTableWidgetItem('Monitoring'))
+        self.taskTable.setItem(rowSelected,6,QTableWidgetItem('Monitoring'))
         posKeyList=settingsData['tasks'][rowSelected]['key']
         negKeyList=settingsData['tasks'][rowSelected]['neg']
         userSizeList=settingsData['tasks'][rowSelected]['size']

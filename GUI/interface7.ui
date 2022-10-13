@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1612</width>
-    <height>630</height>
+    <height>656</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -1451,6 +1451,11 @@ color:black;
                       <column>
                        <property name="text">
                         <string>Proxy Group</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Delay</string>
                        </property>
                       </column>
                       <column>
