@@ -5,6 +5,7 @@ from PyQt6 import QtWidgets
 import interface
 import json
 import profileFunctions,proxyFunctions,onLoadFunctions,taskFunctions,taskStartStopFunctions,settingFunctions
+import observer
 class page(QMainWindow):
     def __init__(self):
         #Load interface UI file & Hide Default TaskBar
@@ -55,13 +56,22 @@ class page(QMainWindow):
 
         #Task Page Buttons
         self.taskPageStartBtn.clicked.connect(self.clickStartTaskBtn)
-        self.taskPageStopBtn.clicked.connect(self.clickStopTaskBtn)
+
         self.taskPageDeleteBtn.clicked.connect(self.clickDeleteTaskBtn)
         self.taskPageEditBtn.clicked.connect(self.clickEditTaskBtn)
         self.createTaskBtn.clicked.connect(self.clickCreateTaskBtn)
 
+        
+        self.taskPageStopBtn.clicked.connect(self.observerTestBtn)
+
         #Settings Page Buttons
         self.webhookTestBtn.clicked.connect(self.clickWebHookBtn)
+
+        #Info Button (using to test observer functions) 
+        self.infoBtn.clicked.connect(self.observerInfoTestBtn)    
+
+        #help Button (using to test observer functions) 
+        self.helpBtn.clicked.connect(self.observerHelpTestBtn)       
 
 
 
@@ -162,8 +172,8 @@ class page(QMainWindow):
     def clickStartTaskBtn(self, text):
         taskStartStopFunctions.clickStartTaskBtn(self, text)
 
-    def clickStopTaskBtn(self, text):
-        taskStartStopFunctions.clickStopTaskBtn(self, text)            
+    #def clickStopTaskBtn(self, text):
+    #    taskStartStopFunctions.clickStopTaskBtn(self, text)            
 
     def clickDeleteTaskBtn(self, text):
         taskFunctions.clickDeleteTaskBtn(self, text) 
@@ -174,12 +184,31 @@ class page(QMainWindow):
     def clickCreateTaskBtn(self, text):
         taskFunctions.clickCreateTaskBtn(self, text)  
 
+    def observerTestBtn(self):
+        observer.observerTestBtn(self)   
+
 
 #######################################
 #      Settings Page Functions        #
 #######################################
     def clickWebHookBtn(self, text):
         settingFunctions.clickWebHookBtn(self, text)  
+
+
+
+#######################################
+#      observer info test Function    #
+#######################################
+    def observerInfoTestBtn(self):
+        observer.observerInfoTestBtn(self)  
+
+
+#######################################
+#      observer help test Function    #
+#######################################
+    def observerHelpTestBtn(self):
+        observer.observerHelpTestBtn(self)  
+
 
 
 #######################################

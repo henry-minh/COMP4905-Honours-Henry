@@ -84,7 +84,9 @@ def loadTaskPageInitial(self):
         self.taskTable.setItem(rowPosition,1,QTableWidgetItem(keywords))
         self.taskTable.setItem(rowPosition,2,QTableWidgetItem(sizes))
         self.taskTable.setItem(rowPosition,3,QTableWidgetItem(i['profile']))
-        self.taskTable.setItem(rowPosition,4,QTableWidgetItem(i['proxyGroup']))
+        self.taskTable.setItem(rowPosition,4,QTableWidgetItem(i['proxyGroup']))        
+        self.taskTable.setItem(rowPosition,5,QTableWidgetItem(i['delay']))
+
         self.taskTable.setItem(rowPosition,6,QTableWidgetItem('Stand By'))        
     f.close()      
     self.taskTable.resizeColumnsToContents()
