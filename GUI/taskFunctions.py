@@ -17,6 +17,19 @@ def clickDeleteTaskBtn(self, event):
         f=open('./GUI/settings.json',"w")
         json.dump(data, f,indent=3)
         f.close()      
+
+        #Delete index in Backing Array & Close Running Threads if task is running
+        if r in self.taskStatusBacking:
+            self.threadList[r].stopTaskFunc()
+            self.taskStatusBacking.pop(i)
+
+        #If the task table shifted down in size, we need to adjust running tasks to prevent index out of bounds
+        for j in range(len(self.taskStatusBacking)):
+            if self.taskStatusBacking[r]>r:
+                self.threadList[r].taskDeletedAdjust()
+        print("taskStatusBacking")
+        print(self.taskStatusBacking)
+
         onLoadFunctions.loadTaskPageInitial(self)   
 
 
@@ -98,6 +111,10 @@ def clickCreateTaskBtn(self, event):
                 "profile": self.profileCheckboxes[i].text(),
                 "delay": self.delayInput.text(),
             })
+            #Update Task Running Backing Array
+            self.taskStatusBacking.append(None)
+            print("taskStatusBacking")
+            print(self.taskStatusBacking)
     f=open('./GUI/settings.json',"w")
     json.dump(data, f, indent = 3)
     f.close()        

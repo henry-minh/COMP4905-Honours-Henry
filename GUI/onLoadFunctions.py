@@ -2,6 +2,13 @@ import json
 from PyQt6.QtWidgets import *
 from PyQt6 import QtWidgets
 
+from PyQt6.QtCore import *
+
+#Used for threading
+from time import sleep
+from threading import Thread
+from threading import Event
+
 ##############################################
 #        Onload Profile Page Table           #
 ############################################## 
@@ -105,8 +112,15 @@ def addProxyCheckbox(self):
     self.proxyCheckboxes.append(checkbox)
     self.proxySelectionContainer.layout().addWidget(checkbox)
 
+#Only Runs once at the start
 def loadVariablesInitial(self):
     self.profileCheckboxes = []
+    # Used for threadnig testing
+    self.counter = 0
+    self.event = Event()
+    self.threadList =[]
+    self.taskStatusBacking=[]
+
 
 ##############################################
 #    Task Page Supplementary Fucntions       #
@@ -116,3 +130,5 @@ def loadSettingPageInitial(self):
     data=json.load(f)
     f.close()    
     self.webhookInput.setText(data['webhook'])
+
+

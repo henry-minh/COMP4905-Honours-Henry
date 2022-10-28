@@ -4,13 +4,99 @@ import requests
 import time
 from PyQt6.QtWidgets import *
 from discord_webhook import DiscordWebhook
+
+##############################################
+#      Used for for threading tasks          #
+############################################## 
+
+from time import sleep
+from threading import Thread
+from threading import Event
+
+
+class CustomThread(Thread):
+    # constructor
+    def __init__(self, event, rowSelected,gui):
+        # call the parent constructor
+        super(CustomThread, self).__init__()
+        # store the event
+        self.event = event
+        self.rowSelected=rowSelected
+        self.gui=gui
+        self.stopTask=False 
+    # execute task
+    def run(self):
+        productFound=1
+        # execute a task in a loop
+        if self.rowSelected>=0:
+            self.gui.taskTable.setItem(self.rowSelected,6,QTableWidgetItem('Monitoring'))
+        f=open('./GUI/settings.json',"r")
+        settingsData=json.load(f)
+        f.close()
+        while not self.event.is_set() :
+            if self.stopTask==True:
+                break
+            delay=float(settingsData['tasks'][self.rowSelected]['delay'])/1000
+            # block for a moment
+            
+            # check for stop
+            
+            
+            # report a message
+            print("Worker thread "+str(self.rowSelected)+" running...\n")
+            productFound=productMonitor(self.gui,self.rowSelected)
+            if productFound==0:
+                print("Product Found, Thread now closing")
+                break
+            
+            sleep(delay)
+        if self.rowSelected>=0:
+
+            self.gui.taskTable.setItem(self.rowSelected,6,QTableWidgetItem('Standby'))        
+
+        print("Thread "+str(self.rowSelected)+' closing down\n')
+
+    def stopTaskFunc(self):
+        self.stopTask=True
+
+    def taskDeletedAdjust(self):
+        print("Taking into account deleted index in settings.json for tasks")
+        self.rowSelected=self.rowSelected-1
+        
+
+
 ##############################################
 #            Start Task Button             #
 ############################################## 
 def clickStartTaskBtn(self, event):
-    start= time.time()
+    print("Start Button clicked")
+    rowSelected=self.taskTable.currentRow()
+    thread1 = CustomThread(self.event,rowSelected,self)
+    self.threadList.append(thread1)
+    
+    self.threadList[len(self.threadList)-1].start()
 
-    rowSelected = self.taskTable.currentRow()
+
+##############################################
+#             Stop Task Button               #
+############################################## 
+def clickStopTaskBtn(self, event):
+  
+    print("Stop Button Pressed")
+    self.threadList[0].stopTaskFunc()
+ 
+    #del self.threadList[self.taskTable.currentRow()]
+
+def clickStopAllTaskBtn(self, event):
+    print("Stop All Tasks Button Pressed")
+    self.event.set()
+    self.threadList.clear()
+    self.event = Event()
+
+def productMonitor(self,row):
+    start= time.time()
+    rowSelected=row
+    #rowSelected = self.taskTable.currentRow()
 
     f=open('./GUI/settings.json',"r")
     settingsData=json.load(f)
@@ -130,21 +216,21 @@ def clickStartTaskBtn(self, event):
         print("Availible in Size: ",size)
         end= time.time()
         executionTime=end-start
-       
+        #self.taskTable.setItem(rowSelected,6,QTableWidgetItem('Stand By'))
+        
         try:
             webhook = DiscordWebhook(url=self.webhookInput.text(), content="Successful Cart Creation: "+webCartLink+"\nProduct: "+cartedProductName+"\nsize: "+size+"\nExecuted in: "+str(executionTime)+"ms")
             response = webhook.execute()
+            return 0
         except:
             print("Invalid Discord Webhook")
-
+    else:
+        print("Product Not Found, Monitoring Again")
+        return 1
         #Scraping the shopify site
     #end= time.time()
-    self.taskTable.setItem(rowSelected,5,QTableWidgetItem('Stand By'))
+    
     #print("Task Exectuion Time = ",end-start,"ms")
 
 
-##############################################
-#             Stop Task Button               #
-############################################## 
-def clickStopTaskBtn(self, event):
-    print("Clicked Stop Task Button")
+

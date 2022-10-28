@@ -65,15 +65,25 @@ def clickDeleteProxyBtn(self, event):
     for i in range(0,len(data['proxies'])):
         if(data['proxies'][i].get("proxyGroupName")==self.proxyGroupInput.text()):
             del data['proxies'][i]
+            
+            #Delete index in Backing Array & Close Running Threads if task is running
+            if i in self.taskStatusBacking:
+                self.threadList[i].stopTaskFunc()
+                self.taskStatusBacking.pop(i)
+
+            #If the task table shifted down in size, we need to adjust running tasks to prevent index out of bounds
+            for j in range(len(self.taskStatusBacking)):
+                if self.taskStatusBacking[i]>i:
+                    self.threadList[i].taskDeletedAdjust()
+            print("taskStatusBacking")
+            print(self.taskStatusBacking)
             break
 
-    for i in range(len(data['tasks'])-1,-1,-1):
-        if(data['tasks'][i]['proxyGroup']==self.proxyGroupInput.text()):
-            del data['tasks'][i]
+
 
     f=open('./GUI/settings.json',"w")
     json.dump(data, f,indent=3)
     f.close()
-    #If A Task Uses A Proxy Group that gets deleted, we need delete any affected tasks
+
     onLoadFunctions.loadProxyPageInitial(self)
     onLoadFunctions.loadTaskPageInitial(self)

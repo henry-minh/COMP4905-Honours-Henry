@@ -23,6 +23,19 @@ def clickDeleteProfileBtn(self, event):
     for i in range(len(data['tasks'])-1,-1,-1):
         if(data['tasks'][i]['profile']==profileSelected):
             del data['tasks'][i]
+            #self.taskStatusBacking.pop(i)
+            #Delete index in Backing Array & Close Running Threads if task is running
+            if i in self.taskStatusBacking:
+                #close Thread
+                self.threadList[i].stopTaskFunc()
+                self.taskStatusBacking.pop(i)
+
+            #If the task table shifted down in size, we need to adjust running tasks to prevent index out of bounds
+            for j in range(len(self.taskStatusBacking)):
+                if self.taskStatusBacking[i]>i:
+                    self.threadList[i].taskDeletedAdjust()
+            print("taskStatusBacking")
+            print(self.taskStatusBacking)
 
         #OverWriting settings.json
         f=open('./GUI/settings.json',"w")

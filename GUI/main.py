@@ -5,7 +5,10 @@ from PyQt6 import QtWidgets
 import interface
 import json
 import profileFunctions,proxyFunctions,onLoadFunctions,taskFunctions,taskStartStopFunctions,settingFunctions
-import observer
+import threading
+from PyQt6.QtCore import *
+import time
+import traceback
 class page(QMainWindow):
     def __init__(self):
         #Load interface UI file & Hide Default TaskBar
@@ -61,17 +64,19 @@ class page(QMainWindow):
         self.taskPageEditBtn.clicked.connect(self.clickEditTaskBtn)
         self.createTaskBtn.clicked.connect(self.clickCreateTaskBtn)
 
+        self.taskPageStopBtn.clicked.connect(self.clickStopTaskBtn)
+        self.taskPageStopAllBtn.clicked.connect(self.clickStopAllTaskBtn)        
         
-        self.taskPageStopBtn.clicked.connect(self.observerTestBtn)
+        #self.taskPageStopBtn.clicked.connect(self.observerTestBtn)
 
         #Settings Page Buttons
         self.webhookTestBtn.clicked.connect(self.clickWebHookBtn)
 
         #Info Button (using to test observer functions) 
-        self.infoBtn.clicked.connect(self.observerInfoTestBtn)    
+        #self.infoBtn.clicked.connect(self.observerInfoTestBtn)    
 
         #help Button (using to test observer functions) 
-        self.helpBtn.clicked.connect(self.observerHelpTestBtn)       
+        #self.helpBtn.clicked.connect(self.observerHelpTestBtn)       
 
 
 
@@ -184,9 +189,11 @@ class page(QMainWindow):
     def clickCreateTaskBtn(self, text):
         taskFunctions.clickCreateTaskBtn(self, text)  
 
-    def observerTestBtn(self):
-        observer.observerTestBtn(self)   
-
+    def clickStopTaskBtn(self, text):
+        taskStartStopFunctions.clickStopTaskBtn(self,text)   
+        
+    def clickStopAllTaskBtn(self, text):
+        taskStartStopFunctions.clickStopAllTaskBtn(self,text)   
 
 #######################################
 #      Settings Page Functions        #
@@ -200,6 +207,8 @@ class page(QMainWindow):
 #      observer info test Function    #
 #######################################
     def observerInfoTestBtn(self):
+        #x = threading.Thread(target=observer.observerInfoTestBtn(self))
+        #x.start()
         observer.observerInfoTestBtn(self)  
 
 
@@ -207,13 +216,17 @@ class page(QMainWindow):
 #      observer help test Function    #
 #######################################
     def observerHelpTestBtn(self):
-        observer.observerHelpTestBtn(self)  
+        observer.observerHelpTestBtn(self)
+
+
 
 
 
 #######################################
 #         Launch Application          #
 #######################################
+
+
 
 app = QApplication(sys.argv)
 window = page()

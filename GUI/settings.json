@@ -17,7 +17,7 @@
             "10"
          ],
          "profile": "Test Profile",
-         "delay": "3000"
+         "delay": "10000"
       },
       {
          "site": "https://www.deadstock.ca/",
@@ -35,7 +35,35 @@
             "9"
          ],
          "profile": "Test Profile",
-         "delay": "3000"
+         "delay": "10000"
+      },
+      {
+         "site": "https://www.deadstock.ca/",
+         "proxyGroup": "Local Host",
+         "specificProxy": "",
+         "key": [
+            "ProductDoesNotExistYet"
+         ],
+         "neg": [],
+         "size": [
+            "10"
+         ],
+         "profile": "Test Profile",
+         "delay": "10000"
+      },
+      {
+         "site": "https://www.deadstock.ca/",
+         "proxyGroup": "Local Host",
+         "specificProxy": "",
+         "key": [
+            "ProductDoesNotExistYet"
+         ],
+         "neg": [],
+         "size": [
+            "11"
+         ],
+         "profile": "Test Profile",
+         "delay": "10000"
       }
    ],
    "proxies": [
