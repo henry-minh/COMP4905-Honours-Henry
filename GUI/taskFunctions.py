@@ -18,16 +18,29 @@ def clickDeleteTaskBtn(self, event):
         json.dump(data, f,indent=3)
         f.close()      
 
-        #Delete index in Backing Array & Close Running Threads if task is running
-        if r in self.taskStatusBacking:
-            self.threadList[r].stopTaskFunc()
-            self.taskStatusBacking.pop(i)
+        # Close Running Threads if task is running
+        #if r in self.taskStatusBacking:
+        #    self.threadList[r].stopTaskFunc()
+            
+        #Delete index in Backing Array and thread array
+        print("before stoping thread and popping index from backing array")
+        print(self.taskStatusBacking)
+        for j in range(len(self.taskStatusBacking)):
+            if self.taskStatusBacking[j]==r:
+                self.threadList[j].stopTaskFunc()
+                self.threadList.pop(j)   
+                self.taskStatusBacking.pop(j)
+                break
+        print("after stoping thread and popping index from backing array")    
+        print(self.taskStatusBacking)
 
+        print("before shifting backing array for out of bound")
         #If the task table shifted down in size, we need to adjust running tasks to prevent index out of bounds
         for j in range(len(self.taskStatusBacking)):
-            if self.taskStatusBacking[r]>r:
-                self.threadList[r].taskDeletedAdjust()
-        print("taskStatusBacking")
+            if self.taskStatusBacking[j]>r:
+                self.threadList[j].taskDeletedAdjust()
+                self.taskStatusBacking[j]=self.taskStatusBacking[j]-1
+        print("after shifting backing array for out of bound")
         print(self.taskStatusBacking)
 
         onLoadFunctions.loadTaskPageInitial(self)   
@@ -112,9 +125,9 @@ def clickCreateTaskBtn(self, event):
                 "delay": self.delayInput.text(),
             })
             #Update Task Running Backing Array
-            self.taskStatusBacking.append(None)
-            print("taskStatusBacking")
-            print(self.taskStatusBacking)
+            #self.taskStatusBacking.append(None)
+            #print("taskStatusBacking")
+            #print(self.taskStatusBacking)
     f=open('./GUI/settings.json',"w")
     json.dump(data, f, indent = 3)
     f.close()        

@@ -46,7 +46,7 @@
          ],
          "neg": [],
          "size": [
-            "10"
+            "11"
          ],
          "profile": "Test Profile",
          "delay": "10000"
@@ -61,6 +61,24 @@
          "neg": [],
          "size": [
             "11"
+         ],
+         "profile": "Test Profile",
+         "delay": "10000"
+      },
+      {
+         "site": "https://www.deadstock.ca/",
+         "proxyGroup": "Local Host",
+         "specificProxy": "",
+         "key": [
+            "dunk",
+            "high",
+            "prm"
+         ],
+         "neg": [
+            "wolf"
+         ],
+         "size": [
+            "9"
          ],
          "profile": "Test Profile",
          "delay": "10000"

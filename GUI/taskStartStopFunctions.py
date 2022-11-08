@@ -44,6 +44,7 @@ class CustomThread(Thread):
             
             # report a message
             print("Worker thread "+str(self.rowSelected)+" running...\n")
+            print("calling product monitor function, row is: "+str(self.rowSelected))
             productFound=productMonitor(self.gui,self.rowSelected)
             if productFound==0:
                 print("Product Found, Thread now closing")
@@ -52,7 +53,7 @@ class CustomThread(Thread):
             sleep(delay)
         if self.rowSelected>=0:
 
-            self.gui.taskTable.setItem(self.rowSelected,6,QTableWidgetItem('Standby'))        
+            self.gui.taskTable.setItem(self.rowSelected,6,QTableWidgetItem('Stand By'))        
 
         print("Thread "+str(self.rowSelected)+' closing down\n')
 
@@ -61,8 +62,9 @@ class CustomThread(Thread):
 
     def taskDeletedAdjust(self):
         print("Taking into account deleted index in settings.json for tasks")
+        print(str(self.rowSelected)+" => "+str(self.rowSelected-1))
         self.rowSelected=self.rowSelected-1
-        
+
 
 
 ##############################################
@@ -75,17 +77,30 @@ def clickStartTaskBtn(self, event):
     self.threadList.append(thread1)
     
     self.threadList[len(self.threadList)-1].start()
+    self.taskStatusBacking.append(rowSelected)
+    print(self.taskStatusBacking)
+    print(self.threadList)
+    
 
+    #Need to add to the backing array the rowSelected variable
+    # Need a condition where if a task is already running it wont append again
 
 ##############################################
 #             Stop Task Button               #
 ############################################## 
 def clickStopTaskBtn(self, event):
-  
-    print("Stop Button Pressed")
-    self.threadList[0].stopTaskFunc()
- 
-    #del self.threadList[self.taskTable.currentRow()]
+    r = self.taskTable.currentRow()
+    if r>=0:  
+        print("Stop Button Pressed")
+        self.taskTable.setItem(r,6,QTableWidgetItem('Closing..'))
+        print(self.taskStatusBacking)
+        print(self.threadList)
+        for j in range(len(self.taskStatusBacking)):
+            if self.taskStatusBacking[j]==r:
+                self.threadList[j].stopTaskFunc()   
+                self.threadList.pop(j)
+                self.taskStatusBacking.pop(j)
+                break
 
 def clickStopAllTaskBtn(self, event):
     print("Stop All Tasks Button Pressed")
@@ -219,6 +234,13 @@ def productMonitor(self,row):
         #self.taskTable.setItem(rowSelected,6,QTableWidgetItem('Stand By'))
         
         try:
+            for j in range(len(self.taskStatusBacking)):
+                if self.taskStatusBacking[j]==rowSelected:
+                    self.threadList[j].stopTaskFunc()   
+                    self.threadList.pop(j)
+                    self.taskStatusBacking.pop(j)
+            print(self.taskStatusBacking)
+            print(self.threadList)
             webhook = DiscordWebhook(url=self.webhookInput.text(), content="Successful Cart Creation: "+webCartLink+"\nProduct: "+cartedProductName+"\nsize: "+size+"\nExecuted in: "+str(executionTime)+"ms")
             response = webhook.execute()
             return 0

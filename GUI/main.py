@@ -5,6 +5,7 @@ from PyQt6 import QtWidgets
 import interface
 import json
 import profileFunctions,proxyFunctions,onLoadFunctions,taskFunctions,taskStartStopFunctions,settingFunctions
+
 import threading
 from PyQt6.QtCore import *
 import time

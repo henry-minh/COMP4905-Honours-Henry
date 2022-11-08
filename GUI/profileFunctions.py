@@ -26,7 +26,7 @@ def clickDeleteProfileBtn(self, event):
             #self.taskStatusBacking.pop(i)
             #Delete index in Backing Array & Close Running Threads if task is running
             if i in self.taskStatusBacking:
-                #close Thread
+    
                 self.threadList[i].stopTaskFunc()
                 self.taskStatusBacking.pop(i)
 

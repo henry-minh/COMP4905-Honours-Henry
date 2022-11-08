@@ -66,7 +66,7 @@ with sync_playwright() as p:
 
     time.sleep(.1)
     page.click('button[id="continue_button"]')
-    time.sleep(.1)
+    time.sleep(20)
 
     #######################
     ##  Checkout Page 2  ##
@@ -77,6 +77,6 @@ with sync_playwright() as p:
 
     #checkout
 
-    page.click('button[id="continue_button"]')
-    time.sleep(5)
+    #page.click('button[id="continue_button"]')
+    time.sleep(20)
 
