@@ -82,6 +82,24 @@
          ],
          "profile": "Test Profile",
          "delay": "10000"
+      },
+      {
+         "site": "https://www.deadstock.ca/",
+         "proxyGroup": "Test",
+         "specificProxy": "",
+         "key": [
+            "dunk",
+            "high",
+            "prm"
+         ],
+         "neg": [
+            "wolf"
+         ],
+         "size": [
+            "9"
+         ],
+         "profile": "Test Profile",
+         "delay": "10000"
       }
    ],
    "proxies": [
@@ -138,7 +156,7 @@
          "pCardNumber": "123412341234123",
          "pCCV": "123",
          "pMonth": "01",
-         "pYear": "2030"
+         "pYear": "30"
       },
       {
          "id": "Test 2",
@@ -167,7 +185,7 @@
          "pCardNumber": "a",
          "pCCV": "a",
          "pMonth": "01",
-         "pYear": "2026"
+         "pYear": "26"
       },
       {
          "id": "Test 3",
@@ -196,7 +214,7 @@
          "pCardNumber": "a",
          "pCCV": "a",
          "pMonth": "01",
-         "pYear": "2026"
+         "pYear": "26"
       }
    ],
    "webhook": "https://discord.com/api/webhooks/1028937411679490050/vzkAPCBSo5PJ39YvWeyoo7CuNHue_BnDyTR_1v8W_v94macTC-UbiSvhQZZc7OXrPtiP"
