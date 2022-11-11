@@ -32,25 +32,6 @@ browser.get('https://www.google.com/recaptcha/api2/demo')
 start= time.time()
 captchaOrCheckoutFlag=False
 
-'''
-try:
-    WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".g-recaptcha")))
-    # There is a Captcha that needs to be solved
-    captchaSolved=False
-    while captchaSolved==False:
-        try:
-            #This would be replaced with a checkout page element
-            WebDriverWait(browser, 2).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".recaptcha-success")))
-            print("Captcha Successfully solved")
-            captchaSolved=True
-        except:
-            print("captcha not solved yet")
-except:
-    print("No Captcha => We should be on checkout page 1")
-print("Checkout Page 1")
-time.sleep(10)
-browser.quit()
-'''
 captchaType=None
 while captchaType==None:
     try:

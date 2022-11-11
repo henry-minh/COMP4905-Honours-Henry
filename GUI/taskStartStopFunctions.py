@@ -142,11 +142,12 @@ class CustomThread(Thread):
                 break
             
             sleep(delay)
-        self.gui.taskTable.setItem(self.rowSelected,6,QTableWidgetItem('Stand By'))
+        
 
         ###############################################
         #            (Cart Actual Product)            #
         ###############################################
+        self.gui.taskTable.setItem(self.rowSelected,6,QTableWidgetItem('Checking Out'))
         browser.get(productFound)
         
         checkoutPageStatus=False
@@ -255,8 +256,8 @@ class CustomThread(Thread):
         except:
             print("Checkout Unsuccessful or Sold out")
 
-
-        time.sleep(10)
+        self.gui.taskTable.setItem(self.rowSelected,6,QTableWidgetItem('Stand By'))
+        time.sleep(5)
         browser.quit()
 
 
