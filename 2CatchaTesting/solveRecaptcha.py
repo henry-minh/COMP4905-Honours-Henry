@@ -10,24 +10,23 @@ import json
 import requests
 from requests.auth import HTTPProxyAuth
 #https://hp7u1otc:0k6h0cga@81.200.148.5:3190
-url = 'https://deadstock.ca/products.json?limit=1000&page=1'
+url = 'https://www.google.com/recaptcha/api2/demo'
 proxy  = {'http': 'hp7u1otc@0k6h0cga:81.200.148.5:3190/'}
 
 
-req = requests.get('https://deadstock.ca/products.json?limit=1000&page=1',proxies=proxy)
-print(json.dumps(req.json()))
-time.sleep(600)
+
+
 # https://nrml.ca/cart/32318741217346:1
 # https://accounts.hcaptcha.com/demo
 # https://www.google.com/recaptcha/api2/demo
 
-chromePath = 'Queue_Bypass_Scripts\chromedriver.exe'
+chromePath = 'chromedriver.exe'
 optionsDebug = webdriver.ChromeOptions()
 optionsDebug.add_experimental_option('excludeSwitches', ['enable-logging'])
 sessionUrl=None
 
 browser = webdriver.Chrome(chromePath,options=optionsDebug) # Add option for Proxy
-browser.get('https://www.google.com/recaptcha/api2/demo')
+browser.get(url)
 
 start= time.time()
 captchaOrCheckoutFlag=False

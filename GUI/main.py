@@ -1,3 +1,4 @@
+
 from PyQt6 import uic,  QtCore
 import sys, os
 from PyQt6.QtWidgets import *
@@ -5,7 +6,6 @@ from PyQt6 import QtWidgets
 import interface
 import json
 import profileFunctions,proxyFunctions,onLoadFunctions,taskFunctions,taskStartStopFunctions,settingFunctions
-
 import threading
 from PyQt6.QtCore import *
 import time
@@ -14,7 +14,7 @@ class page(QMainWindow):
     def __init__(self):
         #Load interface UI file & Hide Default TaskBar
         super().__init__()
-        uic.loadUi("./GUI/interface7.ui",self)
+        uic.loadUi("./GUI/interface.ui",self)
         self.setWindowTitle("bar hide")
         self.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)

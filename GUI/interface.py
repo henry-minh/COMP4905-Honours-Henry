@@ -7,7 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets, QtSvg
-import untitledTest_rc
+import resourceCompiler
 def clickClose():
     print ("closed")
 class Ui_MainWindow(object):

@@ -1993,7 +1993,7 @@ color:black;
              <item>
               <widget class="QLabel" name="footerLabel">
                <property name="text">
-                <string>Henry Nguyen October 24 2022</string>
+                <string>Henry Nguyen November 28 2022</string>
                </property>
               </widget>
              </item>
@@ -2033,7 +2033,7 @@ color:black;
  </widget>
  <resources>
   <include location="feather/newIcons.qrc"/>
-  <include location="../../../../.designer/backup/feather/newIcons.qrc"/>
+  <include location="feather/newIcons.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -1,4 +1,5 @@
 import json
+
 import onLoadFunctions
 import requests
 import time
@@ -55,7 +56,7 @@ class CustomThread(Thread):
         webUrl=None
         sessionUrl=None
 
-        chromePath = 'Queue_Bypass_Scripts\chromedriver.exe'
+        chromePath = 'chromedriver.exe'
 
         print(taskInfo['delay'])
         print(taskInfo['proxyGroup'])
@@ -163,28 +164,28 @@ class CustomThread(Thread):
         #           Page 1           #
         ##############################
         select = Select(browser.find_element("id", 'checkout_shipping_address_country'))
-        time.sleep(.0009)
+        time.sleep(.001)
         select.select_by_visible_text(profileInfo.get('sCountry'))
-        time.sleep(.0009)
+        time.sleep(.001)
         browser.find_element("id", "checkout_email").send_keys(profileInfo.get('email'))
-        time.sleep(.0009)
+        time.sleep(.001)
         browser.find_element("id", "checkout_shipping_address_first_name").send_keys(profileInfo.get('sFirstName'))
-        time.sleep(.0009)
+        time.sleep(.001)
         browser.find_element("id", "checkout_shipping_address_last_name").send_keys(profileInfo.get('sLastName'))
-        time.sleep(.0009)
+        time.sleep(.001)
         browser.find_element("id", "checkout_shipping_address_address1").send_keys(profileInfo.get('sAdd1'))
-        time.sleep(.0009)
+        time.sleep(.001)
         browser.find_element("id", "checkout_shipping_address_city").send_keys(profileInfo.get('sCity'))
         select = Select(browser.find_element("id", 'checkout_shipping_address_province'))
-        time.sleep(.0009)
+        time.sleep(.001)
         select.select_by_visible_text(profileInfo.get('sProvince'))
-        time.sleep(.0009)
+        time.sleep(.001)
         browser.find_element("id", "checkout_shipping_address_zip").send_keys(profileInfo.get('sZip'))
-        time.sleep(.0009)
+        time.sleep(.001)
         browser.find_element("id", "checkout_shipping_address_phone").send_keys(profileInfo.get('pPhoneNumber'))
-        time.sleep(.0009)
+        time.sleep(.001)
         browser.find_element("id", "checkout_shipping_address_address2").send_keys(profileInfo.get('sAdd2'))
-        time.sleep(.0009)
+        time.sleep(.001)
         browser.find_element("id", "continue_button").click()
 
         ##############################
