@@ -3,8 +3,6 @@ import onLoadFunctions
 from PyQt6.QtWidgets import *
 
 
-
-
 ##############################################
 #            Create Proxy Button             #
 ############################################## 
@@ -13,12 +11,14 @@ def clickCreateProxyBtn(self, event):
     proxyListInput = []
     proxyListInput=self.editProxyInput.toPlainText().split(',')
 
-    #base case, no name specified
+    #Error checking if no name is specified
     if self.proxyGroupInput.text()=="":
         return
     f=open('./GUI/settings.json',"r")
     data=json.load(f)
     f.close()
+
+    #Check if the proxy group exists already
     for i in range (0,len(data['proxies'])):
         if(data['proxies'][i]['proxyGroupName']==self.proxyGroupInput.text()):
             doesProxyGroupExist=True
@@ -26,6 +26,7 @@ def clickCreateProxyBtn(self, event):
             for j in range (0,len(proxyListInput)):     
                 data['proxies'][i]['proxyList'].append(proxyListInput[j])
 
+    #Proxy group DNE so we can append it to settins.json
     if doesProxyGroupExist == False:
         data['proxies'].append ({ 
             "proxyGroupName":self.proxyGroupInput.text(),
@@ -34,9 +35,10 @@ def clickCreateProxyBtn(self, event):
     f=open('./GUI/settings.json',"w")
     json.dump(data, f, indent = 3)
     f.close()
+
+    #Update UI
     onLoadFunctions.loadProxyPageInitial(self)
     onLoadFunctions.loadTaskPageInitial(self)
-
 
 
 ##############################################
@@ -78,11 +80,7 @@ def clickDeleteProxyBtn(self, event):
             for j in range(len(self.taskStatusBacking)):
                 if self.taskStatusBacking[i]>i:
                     self.threadList[i].taskDeletedAdjust()
-            print("taskStatusBacking")
-            print(self.taskStatusBacking)
             break
-
-
 
     f=open('./GUI/settings.json',"w")
     json.dump(data, f,indent=3)

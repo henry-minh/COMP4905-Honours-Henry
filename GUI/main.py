@@ -1,15 +1,19 @@
-
-from PyQt6 import uic,  QtCore
-import sys, os
-from PyQt6.QtWidgets import *
-from PyQt6 import QtWidgets
-import interface
-import json
+#Imports I actually Do Need
 import profileFunctions,proxyFunctions,onLoadFunctions,taskFunctions,taskStartStopFunctions,settingFunctions
-import threading
-from PyQt6.QtCore import *
-import time
-import traceback
+from PyQt6 import uic,  QtCore
+import sys
+from PyQt6.QtWidgets import *
+import interface
+
+#Imports I dont think I need
+#from PyQt6 import QtWidgets
+#import time
+#import traceback
+#import os
+#import json
+#from PyQt6.QtCore import *
+#import threading
+
 class page(QMainWindow):
     def __init__(self):
         #Load interface UI file & Hide Default TaskBar
@@ -18,7 +22,7 @@ class page(QMainWindow):
         self.setWindowTitle("bar hide")
         self.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
         self.setAttribute(QtCore.Qt.WidgetAttribute.WA_TranslucentBackground)
-#self.checkboxes = []
+
 
 ##############################################
 #         On Load Function Invoctions        #
@@ -44,7 +48,7 @@ class page(QMainWindow):
         self.profilesBtn.clicked.connect(self.clickProfilesTab)     
         self.captchasBtn.clicked.connect(self.clickCaptchasTab)     
         self.settingsBtn.clicked.connect(self.clickSettingsTab)   
-        self.notificationCloseBtn.clicked.connect(self.clickNotificationCloseBtn)   
+    
         self.hidden=False
 
         #Profile Page Buttons
@@ -80,19 +84,15 @@ class page(QMainWindow):
         #self.helpBtn.clicked.connect(self.observerHelpTestBtn)       
 
 
-
 ##############################################
 #     Minimize Maximize Clse Window          #
 ##############################################
 # TaskBar Functions  
     def clickClose(self,event):
-        print ("closed application")
         self.close()
     def clickMaximize(self,event):
-        print ("maximize")
         self.showMaximized()
     def clickMinimize(self,event):
-        print ("minimize")
         self.showMinimized()
 
 
@@ -133,14 +133,6 @@ class page(QMainWindow):
         self.stackedMainMenu.setCurrentIndex(4)
         self.centerMenuContainer.hide()
         self.hidden=True
-
-
-#######################################
-#       Notification Functions        #
-#######################################
-    def clickNotificationCloseBtn(self, event):
-        self.popupNotificationContainer.hide()
-        self.hidden=True;    
 
 
 #######################################
@@ -203,32 +195,9 @@ class page(QMainWindow):
         settingFunctions.clickWebHookBtn(self, text)  
 
 
-
-#######################################
-#      observer info test Function    #
-#######################################
-    def observerInfoTestBtn(self):
-        #x = threading.Thread(target=observer.observerInfoTestBtn(self))
-        #x.start()
-        observer.observerInfoTestBtn(self)  
-
-
-#######################################
-#      observer help test Function    #
-#######################################
-    def observerHelpTestBtn(self):
-        observer.observerHelpTestBtn(self)
-
-
-
-
-
 #######################################
 #         Launch Application          #
 #######################################
-
-
-
 app = QApplication(sys.argv)
 window = page()
 window.show()

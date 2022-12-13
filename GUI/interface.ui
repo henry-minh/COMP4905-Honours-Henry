@@ -1298,25 +1298,6 @@ color:black;
               <number>0</number>
              </property>
              <item>
-              <widget class="QLabel" name="headerImageLabel">
-               <property name="maximumSize">
-                <size>
-                 <width>30</width>
-                 <height>30</height>
-                </size>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="pixmap">
-                <pixmap resource="feather/newIcons.qrc">:/feather/moomin.png</pixmap>
-               </property>
-               <property name="scaledContents">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item>
               <widget class="QLabel" name="headerLabel">
                <property name="font">
                 <font>
@@ -1325,7 +1306,7 @@ color:black;
                 </font>
                </property>
                <property name="text">
-                <string>Application</string>
+                <string>Shopify Automation</string>
                </property>
               </widget>
              </item>
@@ -1423,7 +1404,7 @@ color:black;
                </property>
                <widget class="QWidget" name="tasksPage">
                 <layout class="QVBoxLayout" name="verticalLayout_16">
-                 <item alignment="Qt::AlignTop">
+                 <item>
                   <widget class="QWidget" name="tasksPageSubContainer1" native="true">
                    <layout class="QVBoxLayout" name="verticalLayout_34">
                     <item>
@@ -1431,6 +1412,9 @@ color:black;
                       <column>
                        <property name="text">
                         <string>Website</string>
+                       </property>
+                       <property name="textAlignment">
+                        <set>AlignCenter</set>
                        </property>
                       </column>
                       <column>
@@ -1534,6 +1518,12 @@ color:black;
                     </property>
                     <item>
                      <widget class="QComboBox" name="proxyListComboBox">
+                      <property name="minimumSize">
+                       <size>
+                        <width>80</width>
+                        <height>0</height>
+                       </size>
+                      </property>
                       <property name="placeholderText">
                        <string>Proxy List</string>
                       </property>
@@ -1551,6 +1541,12 @@ color:black;
                     </item>
                     <item alignment="Qt::AlignLeft">
                      <widget class="QPushButton" name="proxyCreateUpdateBtn">
+                      <property name="minimumSize">
+                       <size>
+                        <width>184</width>
+                        <height>0</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>Create/Update</string>
                       </property>
@@ -1558,6 +1554,21 @@ color:black;
                     </item>
                     <item alignment="Qt::AlignLeft">
                      <widget class="QPushButton" name="proxyDeleteBtn">
+                      <property name="enabled">
+                       <bool>true</bool>
+                      </property>
+                      <property name="sizePolicy">
+                       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                       </sizepolicy>
+                      </property>
+                      <property name="minimumSize">
+                       <size>
+                        <width>184</width>
+                        <height>0</height>
+                       </size>
+                      </property>
                       <property name="text">
                        <string>Delete</string>
                       </property>
@@ -1662,7 +1673,7 @@ color:black;
                       </item>
                      </widget>
                     </item>
-                    <item>
+                    <item alignment="Qt::AlignLeft">
                      <widget class="QWidget" name="profilePageSubContainer2" native="true">
                       <layout class="QHBoxLayout" name="horizontalLayout_21">
                        <property name="spacing">
@@ -1675,6 +1686,18 @@ color:black;
                            <horstretch>0</horstretch>
                            <verstretch>0</verstretch>
                           </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>184</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>80</width>
+                           <height>16777215</height>
+                          </size>
                          </property>
                          <property name="font">
                           <font>
@@ -1693,6 +1716,18 @@ color:black;
                            <horstretch>0</horstretch>
                            <verstretch>0</verstretch>
                           </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>184</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>80</width>
+                           <height>16777215</height>
+                          </size>
                          </property>
                          <property name="font">
                           <font>
@@ -1888,82 +1923,6 @@ color:black;
         </widget>
        </item>
        <item>
-        <widget class="QWidget" name="popupNotificationContainer" native="true">
-         <layout class="QVBoxLayout" name="verticalLayout_19">
-          <item>
-           <widget class="QWidget" name="popupNotificationSubContainer" native="true">
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_20">
-             <item>
-              <widget class="QLabel" name="notificationHeaderLabel">
-               <property name="font">
-                <font>
-                 <pointsize>10</pointsize>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="text">
-                <string>Notification</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QFrame" name="notificationPage">
-               <property name="frameShape">
-                <enum>QFrame::StyledPanel</enum>
-               </property>
-               <property name="frameShadow">
-                <enum>QFrame::Raised</enum>
-               </property>
-               <layout class="QHBoxLayout" name="horizontalLayout_11">
-                <item>
-                 <widget class="QLabel" name="notificationLabel">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="text">
-                   <string>Notification Message</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item alignment="Qt::AlignRight">
-                 <widget class="QPushButton" name="notificationCloseBtn">
-                  <property name="toolTip">
-                   <string>Close Notification</string>
-                  </property>
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="feather/newIcons.qrc">
-                    <normaloff>:/feather/x-octagon.svg</normaloff>:/feather/x-octagon.svg</iconset>
-                  </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>24</width>
-                    <height>24</height>
-                   </size>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
         <widget class="QWidget" name="footerContainer" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_12">
           <property name="spacing">
@@ -1993,7 +1952,7 @@ color:black;
              <item>
               <widget class="QLabel" name="footerLabel">
                <property name="text">
-                <string>Henry Nguyen November 28 2022</string>
+                <string>Henry Nguyen December 5, 2022</string>
                </property>
               </widget>
              </item>

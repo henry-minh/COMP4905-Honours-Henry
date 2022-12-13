@@ -56,20 +56,6 @@
          "proxyGroup": "Local Host",
          "specificProxy": "",
          "key": [
-            "ProductDoesNotExistYet"
-         ],
-         "neg": [],
-         "size": [
-            "11"
-         ],
-         "profile": "Test Profile",
-         "delay": "10000"
-      },
-      {
-         "site": "https://www.deadstock.ca/",
-         "proxyGroup": "Local Host",
-         "specificProxy": "",
-         "key": [
             "dunk",
             "high",
             "prm"
@@ -132,9 +118,9 @@
    "info": [
       {
          "id": "Test Profile",
-         "sameShipBill": true,
+         "sameShipBill": false,
          "email": "asurge2@gmail.com",
-         "oneCheckout": true,
+         "oneCheckout": false,
          "sFirstName": "Henry",
          "sLastName": "Nguyen",
          "sCountry": "Canada",
@@ -142,7 +128,7 @@
          "sAdd2": "",
          "sProvince": "Ontario",
          "sCity": "Ottawa",
-         "sZip": "K1C6N1",
+         "sZip": "K5G7J3",
          "bFirstName": "Henry",
          "bLastName": "Nguyen",
          "bCountry": "Canada",
@@ -150,43 +136,14 @@
          "bAdd2": "",
          "bProvince": "Ontario",
          "bCity": "Ottawa",
-         "bZip": "K1C6N1",
+         "bZip": "K5G7J3",
          "pFirstName": "Henry",
          "pLastName": "Nguyen",
          "pPhoneNumber": "6131234567",
          "pCardNumber": "123412341234123",
          "pCCV": "123",
          "pMonth": "01",
-         "pYear": "30"
-      },
-      {
-         "id": "Test 2",
-         "sameShipBill": false,
-         "email": "a",
-         "oneCheckout": false,
-         "sFirstName": "a",
-         "sLastName": "a",
-         "sCountry": "Canada",
-         "sAdd1": "a",
-         "sAdd2": "",
-         "sProvince": "a",
-         "sCity": "a",
-         "sZip": "a",
-         "bFirstName": "a",
-         "bLastName": "a",
-         "bCountry": "Canada",
-         "bAdd1": "a",
-         "bAdd2": "",
-         "bProvince": "a",
-         "bCity": "a",
-         "bZip": "a",
-         "pFirstName": "a",
-         "pLastName": "a",
-         "pPhoneNumber": "a",
-         "pCardNumber": "a",
-         "pCCV": "a",
-         "pMonth": "01",
-         "pYear": "26"
+         "pYear": "2023"
       },
       {
          "id": "Test 3",
@@ -212,10 +169,10 @@
          "pFirstName": "a",
          "pLastName": "a",
          "pPhoneNumber": "a",
-         "pCardNumber": "a",
+         "pCardNumber": "123",
          "pCCV": "a",
          "pMonth": "01",
-         "pYear": "26"
+         "pYear": "2023"
       }
    ],
    "webhook": "https://discord.com/api/webhooks/1028937411679490050/vzkAPCBSo5PJ39YvWeyoo7CuNHue_BnDyTR_1v8W_v94macTC-UbiSvhQZZc7OXrPtiP"
