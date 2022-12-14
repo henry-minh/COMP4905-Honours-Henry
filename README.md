@@ -19,6 +19,7 @@ E-Commerce ecosystem. During project develpment, I will be showcasing the import
 - The one profile checkout option was not implemented (Originally meant to prevent multiple orders on the same credit card)
 - Payment information must be input in a valid format (AMEX, Mastercard,Visa). Dummy cards can be used here: https://www.paypalobjects.com/en_GB/vhelp/paypalmanager_help/credit_card_numbers.htm
 - If the email used in a profile has been used with the ShopPay services in the past it must be unbinded for the software to work. Opt out here: https://shop.app/opt-out
+- Right before the final checkout submission, the user will be redirected to one the order confirmation page of one of my past Shopify online purchases to simulate the checkout flow without making the user have to purchase something.
 
 ### Guide To Shopify 📁
 
