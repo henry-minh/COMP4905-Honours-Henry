@@ -5,14 +5,6 @@ import sys
 from PyQt6.QtWidgets import *
 import interface
 
-#Imports I dont think I need
-#from PyQt6 import QtWidgets
-#import time
-#import traceback
-#import os
-#import json
-#from PyQt6.QtCore import *
-#import threading
 
 class page(QMainWindow):
     def __init__(self):

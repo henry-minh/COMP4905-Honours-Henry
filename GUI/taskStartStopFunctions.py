@@ -18,17 +18,16 @@ from time import sleep
 from threading import Thread
 from threading import Event
 
-#Imports I dont think I need
-#import onLoadFunctions
-#from seleniumwire import webdriver
-#import os
-#from selenium.webdriver.common.keys import Keys
 
+###########################
+#      Thread Class       #
+###########################
 class CustomThread(Thread):
     # constructor
     def __init__(self, event, rowSelected,gui,taskStatusBacking,threadList):
         # call the parent constructor
         super(CustomThread, self).__init__()
+
         # store the event
         self.event = event
         self.rowSelected=rowSelected
@@ -44,9 +43,7 @@ class CustomThread(Thread):
         if self.rowSelected<0:
             return
 
-        ###########################
-        #     Variable Setup      #
-        ###########################
+        #Variable Setup
         f=open('./GUI/settings.json',"r")
         settingsData=json.load(f)
         f.close()
@@ -59,10 +56,6 @@ class CustomThread(Thread):
         sessionUrl=None
         chromePath = 'chromedriver.exe'
 
-
-        #print(taskInfo['delay'])
-        #print(taskInfo['proxyGroup'])
-        #print(taskInfo['profile'])
         for i in range(0,len(settingsData['info'])):
             if(settingsData['info'][i].get('id'))==taskInfo['profile']:
                 profileInfo=settingsData['info'][i]
@@ -70,9 +63,6 @@ class CustomThread(Thread):
         for i in range(0,len(settingsData['proxies'])):
             if(settingsData['proxies'][i].get('proxyGroupName'))==taskInfo['proxyGroup']:
                 proxyInfo=settingsData['proxies'][i]    
-        #print("//////////")
-        #print(profileInfo)
-        #print(proxyInfo)
         a=proxyInfo.get('proxyList')[randrange(len(proxyInfo.get('proxyList')))]
         b=''
         if a=='':
@@ -82,7 +72,6 @@ class CustomThread(Thread):
             b=proxyInfo.get('proxyList')[randrange(len(proxyInfo.get('proxyList')))].split(":")
             proxyUtilized=b[2]+"@"+b[3]+":"+b[0]+":"+b[1]
         webUrl=taskInfo['site']
-        #print(proxyUtilized)
 
         ###########################
         #   Create Queue Bypass   #
@@ -100,7 +89,6 @@ class CustomThread(Thread):
         browser=None
         if proxyUtilized!="local":
             http=("http://%s:%s@%s:%s"%(b[2],b[3],b[0],b[1]))
-            #print(http)
             optionsProxy = {
                 'proxy': {
                     'http': http, 
@@ -116,13 +104,12 @@ class CustomThread(Thread):
         browser.get(dummyProductLink)
 
         # (2) Wait Through queue up to 5 min (Will need to update this to pull the actual queue timer on the page later)
-
         WebDriverWait(browser, 5).until(EC.visibility_of_element_located(("id", "checkout_shipping_address_country")))
+
         #(3) Get the session URL and clear the cart
         sessionUrl = browser.current_url
-        #print("error start here?")
         browser.get(webUrl+'cart/clear')
-        #print("error end here?")
+
         ##############################
         #      Product Monitor       #
         ##############################
@@ -131,8 +118,6 @@ class CustomThread(Thread):
             self.gui.taskTable.setItem(self.rowSelected,6,QTableWidgetItem('Monitoring'))
             if self.stopTask==True:
                 break
-            # report a message
-            #print("Worker thread "+str(self.rowSelected)+" running...\n")
             productFound=productMonitor(self.gui,self.rowSelected,proxyUtilized)
             if productFound=='invalid':
                 print("invalid url, Thread now closing")
@@ -145,11 +130,7 @@ class CustomThread(Thread):
         ##############################
         #(5) Checkout Product, If Bot protection is up, waits for the user to sovle and redirect to checkout page 1
         self.gui.taskTable.setItem(self.rowSelected,6,QTableWidgetItem('Checking Out'))
-        #print("checking out using link: "+productFound)
         browser.get(productFound)
-        #print("error 2 start here?")
-        #browser.get(dummyProductLink)
-        #print("error 2 end here?")
         checkoutPageStatus=False
         while checkoutPageStatus==False:
             try:
@@ -162,6 +143,7 @@ class CustomThread(Thread):
         ##############################
         #      Checkout Page 1       #
         ##############################
+        #(6) Fill out Checkout Page 1 
         select = Select(browser.find_element("id", 'checkout_shipping_address_country'))
         time.sleep(.01)
         select.select_by_visible_text(profileInfo.get('sCountry'))
@@ -190,13 +172,23 @@ class CustomThread(Thread):
         ##############################
         #      Checkout Page 2       #
         ##############################
-        WebDriverWait(browser, 5).until(EC.visibility_of_element_located(("id", "continue_button")))
-        browser.find_element("id", "continue_button").click()
+        #(6) Fill out Checkout Page 2
+        WebDriverWait(browser, 20).until(EC.visibility_of_element_located(("id", "continue_button")))
+        
+        #sometimes the continue button isnt clickable right away since shipping rates need to be loaded
+        while(1):
+            try:
+                browser.find_element("id", "continue_button").click()
+                WebDriverWait(browser, 1).until(EC.visibility_of_element_located(("xpath", "//*[@title='Field container for: Card number']")))
+                break
+            except:
+                print("Continue Button Waiting to be Clickable")
 
         ##############################
         #      Checkout Page 3       #
         ##############################
-        WebDriverWait(browser, 5).until(EC.visibility_of_element_located(("xpath", "//*[@title='Field container for: Card number']")))
+        #(7) Fill out Checkout Page 3
+        
         test=browser.find_element("xpath","//*[@title='Field container for: Card number']")
         iframe = browser.find_element("xpath","//*[@title='Field container for: Card number']")
 
@@ -230,19 +222,18 @@ class CustomThread(Thread):
 
         time.sleep(.00009)
         browser.switch_to.default_content()
-
         #browser.find_element("id", "continue_button").click()
+
         #Temporary Checkout Page From One of My Previous Purchases
         end= time.time()
         executionTime=end-start
-        print("Checkout Button Clicked, Checkout Execution time:")
-        print(executionTime)
+        print("Checkout Button Clicked, Checkout Execution time: ",executionTime)
         browser.get('https://nrml.ca/13343831/orders/086a03063ea7fbebca66276c1a8b353f')
-
 
         ##############################
         #      Checkout Page 4       #
         ##############################
+        #(8) Confirmation Page
         #Confirmation page always has the unique class "step__footer__continue-btn btn"
         #Normally I'd use the class that contains the order # but it doesnt always show
         #If unsuccessful, notify the user that the product is sold out
@@ -250,7 +241,6 @@ class CustomThread(Thread):
         try:
             WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, ".step__footer__continue-btn")))
             confirmationUrl = browser.current_url
-            #print("Checkout Success, Sending Checkout Link to Discord Webhook")
             #Discord Webhook the Confirmation Page
             webhook = DiscordWebhook(url=self.gui.webhookInput.text(), content="Successfully Checked Out!: "+confirmationUrl+"\nCheckout Page Execution Time: "+str(executionTime)+" seconds")
             response = webhook.execute()
@@ -259,6 +249,8 @@ class CustomThread(Thread):
         self.gui.taskTable.setItem(self.rowSelected,6,QTableWidgetItem('Stand By'))
         time.sleep(5)
         browser.quit()
+
+        #(9) Delete threads from list & thread backing array
         print("Thread "+str(self.rowSelected)+' closing down\n')
         for j in range(len(self.taskStatusBacking)):
             if self.taskStatusBacking[j]==self.rowSelected:
@@ -274,8 +266,6 @@ class CustomThread(Thread):
 
     #Edge Case if task is deleted while other tasks are running and indexes are rearranged
     def taskDeletedAdjust(self):
-        #print("Taking into account deleted index in settings.json for tasks")
-        #print(str(self.rowSelected)+" => "+str(self.rowSelected-1))
         self.rowSelected=self.rowSelected-1
 
 
@@ -283,7 +273,6 @@ class CustomThread(Thread):
 #     Start Task Button      #
 ##############################
 def clickStartTaskBtn(self, event):
-    #print("Start Button clicked")
     rowSelected=self.taskTable.currentRow()
     if rowSelected >=0:
         thread1 = CustomThread(self.event,rowSelected,self,self.taskStatusBacking,self.threadList)
@@ -293,7 +282,8 @@ def clickStartTaskBtn(self, event):
         print("Task Started, thread backing array is =>",self.taskStatusBacking)
         print("Task Started, thread array is =>",self.threadList)
     #Need to add to the backing array the rowSelected variable
-    # Need a condition where if a task is already running it wont append again
+    #Need a condition where if a task is already running it wont append again
+
 
 ##############################
 #      Stop Task Button      #
@@ -301,7 +291,6 @@ def clickStartTaskBtn(self, event):
 def clickStopTaskBtn(self, event):
     r = self.taskTable.currentRow()
     if r>=0:  
-        #print("Stop Button Pressed")
         self.taskTable.setItem(r,6,QTableWidgetItem('Closing..'))
         print("Task Stopped, thread backing array is =>",self.taskStatusBacking)
         print("Task Stopped, thread array is =>",self.threadList)
@@ -313,13 +302,12 @@ def clickStopTaskBtn(self, event):
                 break
 
 def clickStopAllTaskBtn(self, event):
-    #print("Stop All Tasks Button Pressed")
     self.event.set()
     self.threadList.clear()
+    self.taskStatusBacking.clear()
     self.event = Event()
 
 def productPlaceholder(self,proxyUtilized,webUrl):
-    #print("test")
     # Proxy Implementation
     itemDNE=False
     data=None
@@ -334,14 +322,13 @@ def productPlaceholder(self,proxyUtilized,webUrl):
         else:
             proxy  = {'http': proxyUtilized}
             print("A proxy was used => ",proxy)
-            #print(proxy)
             r = requests.get(webScrapeLink,proxies=proxy)
         try:
             data = r.json()
         except:
             print("Invalid Link")
             return "invalid"
-
+        #Scrape products.json file
         for item in data ['products']:
             title=item['title']
             handle=item['handle']
@@ -349,20 +336,17 @@ def productPlaceholder(self,proxyUtilized,webUrl):
             variantObject=item['variants']
             productAvailable =True;
             if productAvailable ==True:
-                #print("Product found: " +handle)
                 for obj in variantObject:
                     itemId = obj['id']
                     available = obj ['available']
                     if (available==True):
                         finalLink=webUrl+"cart/"+str(itemId)+":1"
                         print("Product found: " +handle," Checkout Link is:",finalLink)
-                        #print(finalLink)
                         return finalLink
                         
 def productMonitor(self,row,proxyUtilized):
     start= time.time()
     rowSelected=row
-    #rowSelected = self.taskTable.currentRow()
     f=open('./GUI/settings.json',"r")
     settingsData=json.load(f)
     f.close()    
@@ -405,7 +389,6 @@ def productMonitor(self,row,proxyUtilized):
     if "random" in userSizeList:
         randomFlag =True
 
-    #print(webScrapeLink)
     while itemDNE == False:
         pageNum +=1
         webScrapeLink=settingsData['tasks'][rowSelected]['site']+"products.json?limit=250&page="
@@ -443,23 +426,17 @@ def productMonitor(self,row,proxyUtilized):
                 for item in posKeyList:
                     if not item in handle.lower():
                         productAvailable =False;
-                        #print("Positive Key Word Condition Failed")
                 for item in negKeyList:
                     if item in handle.lower():
                         productAvailable =False;
-                        #print("Negative Key Word Condition Failed")
-            # Only doing footwear so we return false
+            # Only webscraped footwear or return false
             else:
                 productAvailable =False;
 
-
-
             if productAvailable ==True and itemDNE == False:
-                #print("Passed Check: " +handle)
                 cartedProductName=handle
                 itemDNE = True
                 for obj in variantObject:
-        
                     itemId = obj['id']
                     price = obj['price']
                     sku = obj ['sku']
@@ -478,13 +455,8 @@ def productMonitor(self,row,proxyUtilized):
                 
     if(validCartId==True):
         print("Availible product found in size ",size," :",webCartLink)
-        #print("Availible in Size: ",size)
         end= time.time()
         executionTime=end-start
-        
-
-        print(self.taskStatusBacking)
-        print(self.threadList)
         webhook = DiscordWebhook(url=self.webhookInput.text(), content="Successful Cart Creation: "+webCartLink+"\nProduct: "+cartedProductName+"\nsize: "+size+"\nExecuted in: "+str(executionTime)+"ms")
         webhook.execute()
         
@@ -492,8 +464,6 @@ def productMonitor(self,row,proxyUtilized):
             for j in range(len(self.taskStatusBacking)):
                 if self.taskStatusBacking[j]==rowSelected:
                     self.threadList[j].stopTaskFunc()  
-            #        self.threadList.pop(j)
-            #        self.taskStatusBacking.pop(j) 
             return webCartLink           
         except:
             print("Invalid Discord Webhook")
@@ -501,7 +471,3 @@ def productMonitor(self,row,proxyUtilized):
     else:
         print("Product Not Found, Monitoring Again")
         return 'invalid'
-
-
-
-

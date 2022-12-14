@@ -1,43 +1,6 @@
 {
    "tasks": [
       {
-         "site": "https://deadstock.ca/",
-         "proxyGroup": "Local Host",
-         "specificProxy": "",
-         "key": [
-            "adidas"
-         ],
-         "neg": [
-            "terrex",
-            "qntm"
-         ],
-         "size": [
-            "8",
-            "9",
-            "10"
-         ],
-         "profile": "Test Profile",
-         "delay": "10000"
-      },
-      {
-         "site": "https://www.deadstock.ca/",
-         "proxyGroup": "Local Host",
-         "specificProxy": "",
-         "key": [
-            "dunk",
-            "high",
-            "prm"
-         ],
-         "neg": [
-            "wolf"
-         ],
-         "size": [
-            "9"
-         ],
-         "profile": "Test Profile",
-         "delay": "10000"
-      },
-      {
          "site": "https://www.deadstock.ca/",
          "proxyGroup": "Local Host",
          "specificProxy": "",
@@ -107,6 +70,44 @@
             "11",
             "12",
             "13"
+         ],
+         "profile": "Test Profile",
+         "delay": "10000"
+      },
+      {
+         "site": "https://www.nrml.ca/",
+         "proxyGroup": "Local Host",
+         "specificProxy": "",
+         "key": [
+            "adidas"
+         ],
+         "neg": [
+            "terrex",
+            "qntm"
+         ],
+         "size": [
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13"
+         ],
+         "profile": "Test Profile",
+         "delay": "10000"
+      },
+      {
+         "site": "https://www.nrml.ca/",
+         "proxyGroup": "Test",
+         "specificProxy": "",
+         "key": [
+            "nike"
+         ],
+         "neg": [],
+         "size": [
+            "9"
          ],
          "profile": "Test Profile",
          "delay": "10000"
