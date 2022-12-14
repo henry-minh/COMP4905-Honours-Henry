@@ -2,38 +2,6 @@
    "tasks": [
       {
          "site": "https://www.deadstock.ca/",
-         "proxyGroup": "Local Host",
-         "specificProxy": "",
-         "key": [
-            "ProductDoesNotExistYet"
-         ],
-         "neg": [],
-         "size": [
-            "11"
-         ],
-         "profile": "Test Profile",
-         "delay": "10000"
-      },
-      {
-         "site": "https://www.deadstock.ca/",
-         "proxyGroup": "Local Host",
-         "specificProxy": "",
-         "key": [
-            "dunk",
-            "high",
-            "prm"
-         ],
-         "neg": [
-            "wolf"
-         ],
-         "size": [
-            "9"
-         ],
-         "profile": "Test Profile",
-         "delay": "10000"
-      },
-      {
-         "site": "https://www.deadstock.ca/",
          "proxyGroup": "Test",
          "specificProxy": "",
          "key": [
@@ -108,6 +76,20 @@
          "neg": [],
          "size": [
             "9"
+         ],
+         "profile": "Test Profile",
+         "delay": "10000"
+      },
+      {
+         "site": "https://www.deadstock.ca/",
+         "proxyGroup": "Local Host",
+         "specificProxy": "",
+         "key": [
+            "ProductDoesNotExistYet"
+         ],
+         "neg": [],
+         "size": [
+            "11"
          ],
          "profile": "Test Profile",
          "delay": "10000"
