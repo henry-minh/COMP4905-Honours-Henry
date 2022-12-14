@@ -22,12 +22,25 @@ E-Commerce ecosystem. During project develpment, I will be showcasing the import
 - Right before the final checkout submission, the user will be redirected to one the order confirmation page of one of my past Shopify online purchases to simulate the checkout flow without making the user have to purchase something.
 - Selenium needs the user to download the latest chrome driver, add it to their enviornment variables, and place it outside the GUI directory (place with this README).
 The latest chrome driver can be downloaded here: https://sites.google.com/a/chromium.org/chromedriver/downloads
+- A discord webhook must be setup for the software to work. If you want to change the Discord webhook key I provided by default, follow the instructions in the Technical Guide section of this README
+
+### File Details
+- main.py - Launch the GUI from here
+- onLoadFunctions.py - Loads the information from settings.json in the GUI
+- taskFunctions.py - Create, Update, Delete Tasks 
+- taskStartStopFunctions.py - Functionality for when tasks are running
+- profileFunctions.py - Create, Update, Delete profiles
+- proxyFunctions.py - Create, Update, Delete proxy groups
+- settingFunctions.py - Create/Edit a discord webhook
+- settings.json - json containing information on the saved tasks, profiles, proxies, and discord webhook
+- interface.ui  -UI file main uses to load the GUI
+- interface.py  -py file for interface.ui, used to load the GUI
 
 ### Guide To Shopify 📁
 
 - <p><a href="https://docs.google.com/presentation/d/1sz8ChZtQNIseWiH6DCc-wJ791BlAlRy8oH1arS1TfHI/edit?usp=sharing">Shopify Guide</a></p>
 
-### Technical Guide to Bandit AIO 🛠
+### Technical Guide 🛠
 
 - <p><a href="https://docs.google.com/document/d/1TjBO5ME-s_Xvvzj3_z5gz0XJhiPSwRK_Nzy4KqFQHkM/edit?usp=sharing">Bandit AIO Guide</a></p>
 
