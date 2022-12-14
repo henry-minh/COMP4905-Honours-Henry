@@ -1,44 +1,24 @@
-# BanditAIO
+# Henry Nguyen Honours Project
 
-### About Bandit AIO 👻
+### Shopify Checkout Automation Tool
 
-<p>Bandit AIO is a Shopify checkout automation bot for purchasing limited online products during bot protection enabled releases. Many online retailers are unable to distribute their products to their intended audience due various automation bots licenensed in extremly exclusive markets. Products such as collectables, limited sneakers, and video game consoles have been even more difficult for the average consumer to attain. </p>
-
-<p>The Purpose of this Project is to highlight the prevalence and prevention of scalping attacks in the
+<p>The purpose of this project is to highlight the prevalence and prevention of scalping attacks in the
 E-Commerce ecosystem. During project develpment, I will be showcasing the importance of balancing web traffic protection and how bots depleting limited product negatively impact real customers while negatively effecting the web application's performance.</p>
-
-### Obstacles 📑
-
-- Webscraping
-- Proxy Protection
-- Checkout Queues
-- Monitoring
-- Recaptcha and HCaptcha handling
-- Form Submission
-- Cookie Handling
 
 ### Features ✨
 
-- Query specific products using keywords and size selection
-- Bypass checkout queues when the website traffic is overloaded
-- IP/Proxy masking to prevent being rate limited
+- Product Monitoring (Webscraping)
+- Profile Creation
+- Proxy Creation
+- Shopify Queue Bypass Implementation
+- Discord Checkout Notification Integration
 
-### Complete
+### Additional Notes
 
-- Product Monitoring Module (First Iteration)
-- Queue Bypass (First Iteration)
-- Discord Webhook Implementation
-
-### To Do
-
-- Create The UI Skeleton using PyQt6
-- Recaptcha and HCaptcha Handeling
-- Clean up code for Form Submission (Super easy to do but it's the last step)
-- Implement multithreading so we can implement multiple tasks running at the same time
-- Create a script that will take user information and convert it into a profile.json (will be handled in the UI later)
-- Integrate all features into a UI when complete.
-- Create Discord Bot that displays Queue Time
-- Create Discord Bot that checks if Shopify bot protection is enabled
+- The captchas tab in the UI was not implemented
+- The one profile checkout option was not implemented (Originally meant to prevent multiple orders on the same credit card)
+- Payment information must be input in a valid format (AMEX, Mastercard,Visa). Dummy cards can be used here: https://www.paypalobjects.com/en_GB/vhelp/paypalmanager_help/credit_card_numbers.htm
+- If the email used in a profile has been used with the ShopPay services in the past it must be unbinded for the software to work. Opt out here: https://shop.app/opt-out
 
 ### Guide To Shopify 📁
 
@@ -56,12 +36,20 @@ E-Commerce ecosystem. During project develpment, I will be showcasing the import
 
 - Python 3.9
 
-### FRAMEWORKS & LIBRARIES
+### Software FRAMEWORKS & LIBRARIES
 
 <p align="left"> <a href="https://playwright.dev/python/docs/intro" target="_blank" rel="noreferrer"><img src="https://yt3.ggpht.com/9y13pxP3xxovml6W83D4Kbq4joCA-WaKy01i1BAihK6315sPq7z_oTIa3YdGa7ws4k4aaRbf=s900-c-k-c0x00ffffff-no-rj" width="32" height="32" /></a><a href="https://requests.readthedocs.io/en/latest/" target="_blank" rel="noreferrer"><img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Requests_Python_Logo.png" width="32" height="32" /></a><a href="https://pypi.org/project/discord-webhook/" target="_blank" rel="noreferrer"><img src="https://pypi.org/static/images/logo-small.95de8436.svg" width="32" height="32" /></a><a href="https://pypi.org/project/PyQt6/" target="_blank" rel="noreferrer"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Python_and_Qt.svg/1200px-Python_and_Qt.svg.png" width="32" height="32" /></a></p>
 
-- Playwright 1.22
-- Requests (Built into Python 3)
-- PyPi Discord Webhook 0.16.3
-- PyQt6 6.31
+- Selenium 4.5 (web browser automation)
+- Selenium-wire 5.10 (Selenium proxy support for user password authenticated IP’s)
+- PyQt6 6.3.1 (GUI library)
+- Requests 2.28.1 (web scraping the product ID)
 - PyQt6-tools 6.1.0.1.2
+- Discord-webhook 0.17.0 (Discord notifications for checkouts)
+
+### Other Tools Used Throughout the Project
+- Windows 10
+- Visual Studio Code 1.73.1 (IDE)
+- qt6-applications (GUI creation environment for PyQt6 UI files)
+- qt-6tools (qt designer environment for PyQt6 UI files)
+- 2captcha-python 1.1.2 (testing auto image recognition captcha solving)
