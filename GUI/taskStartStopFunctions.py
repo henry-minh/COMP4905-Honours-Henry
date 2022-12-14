@@ -26,7 +26,7 @@ from threading import Event
 
 class CustomThread(Thread):
     # constructor
-    def __init__(self, event, rowSelected,gui):
+    def __init__(self, event, rowSelected,gui,taskStatusBacking,threadList):
         # call the parent constructor
         super(CustomThread, self).__init__()
         # store the event
@@ -35,6 +35,9 @@ class CustomThread(Thread):
         self.gui=gui
         self.stopTask=False 
 
+        #thread lists
+        self.taskStatusBacking=taskStatusBacking
+        self.threadList=threadList
 
     def run(self):
         productFound=1
@@ -97,7 +100,7 @@ class CustomThread(Thread):
         browser=None
         if proxyUtilized!="local":
             http=("http://%s:%s@%s:%s"%(b[2],b[3],b[0],b[1]))
-            print(http)
+            #print(http)
             optionsProxy = {
                 'proxy': {
                     'http': http, 
@@ -117,8 +120,9 @@ class CustomThread(Thread):
         WebDriverWait(browser, 5).until(EC.visibility_of_element_located(("id", "checkout_shipping_address_country")))
         #(3) Get the session URL and clear the cart
         sessionUrl = browser.current_url
-        browser.get('https://deadstock.ca/cart/clear')
-
+        #print("error start here?")
+        browser.get(webUrl+'cart/clear')
+        #print("error end here?")
         ##############################
         #      Product Monitor       #
         ##############################
@@ -132,7 +136,7 @@ class CustomThread(Thread):
             productFound=productMonitor(self.gui,self.rowSelected,proxyUtilized)
             if productFound=='invalid':
                 print("invalid url, Thread now closing")
-                return
+                return 
             delay=float(settingsData['tasks'][self.rowSelected]['delay'])/1000    
             sleep(delay)
         
@@ -141,9 +145,11 @@ class CustomThread(Thread):
         ##############################
         #(5) Checkout Product, If Bot protection is up, waits for the user to sovle and redirect to checkout page 1
         self.gui.taskTable.setItem(self.rowSelected,6,QTableWidgetItem('Checking Out'))
-        print("checking out using link: "+productFound)
+        #print("checking out using link: "+productFound)
         browser.get(productFound)
-        
+        #print("error 2 start here?")
+        #browser.get(dummyProductLink)
+        #print("error 2 end here?")
         checkoutPageStatus=False
         while checkoutPageStatus==False:
             try:
@@ -254,13 +260,22 @@ class CustomThread(Thread):
         time.sleep(5)
         browser.quit()
         print("Thread "+str(self.rowSelected)+' closing down\n')
+        for j in range(len(self.taskStatusBacking)):
+            if self.taskStatusBacking[j]==self.rowSelected:
+                self.threadList.pop(j)
+                self.taskStatusBacking.pop(j) 
+                break;
+        print("Task Complete, Thread Closed, Thread List Status is now => ",self.threadList)
+        print("Task Complete, Thread Closed, Thread Backing Array is now => ",self.taskStatusBacking)
 
+    #stopTask is used to notify that a producct has been found
     def stopTaskFunc(self):
         self.stopTask=True
 
+    #Edge Case if task is deleted while other tasks are running and indexes are rearranged
     def taskDeletedAdjust(self):
-        print("Taking into account deleted index in settings.json for tasks")
-        print(str(self.rowSelected)+" => "+str(self.rowSelected-1))
+        #print("Taking into account deleted index in settings.json for tasks")
+        #print(str(self.rowSelected)+" => "+str(self.rowSelected-1))
         self.rowSelected=self.rowSelected-1
 
 
@@ -271,12 +286,12 @@ def clickStartTaskBtn(self, event):
     #print("Start Button clicked")
     rowSelected=self.taskTable.currentRow()
     if rowSelected >=0:
-        thread1 = CustomThread(self.event,rowSelected,self)
+        thread1 = CustomThread(self.event,rowSelected,self,self.taskStatusBacking,self.threadList)
         self.threadList.append(thread1)
         self.threadList[len(self.threadList)-1].start()
         self.taskStatusBacking.append(rowSelected)
-        print(self.taskStatusBacking)
-        print(self.threadList)
+        print("Task Started, thread backing array is =>",self.taskStatusBacking)
+        print("Task Started, thread array is =>",self.threadList)
     #Need to add to the backing array the rowSelected variable
     # Need a condition where if a task is already running it wont append again
 
@@ -288,8 +303,8 @@ def clickStopTaskBtn(self, event):
     if r>=0:  
         #print("Stop Button Pressed")
         self.taskTable.setItem(r,6,QTableWidgetItem('Closing..'))
-        print(self.taskStatusBacking)
-        print(self.threadList)
+        print("Task Stopped, thread backing array is =>",self.taskStatusBacking)
+        print("Task Stopped, thread array is =>",self.threadList)
         for j in range(len(self.taskStatusBacking)):
             if self.taskStatusBacking[j]==r:
                 self.threadList[j].stopTaskFunc()   
@@ -318,8 +333,8 @@ def productPlaceholder(self,proxyUtilized,webUrl):
             r = requests.get(webScrapeLink)
         else:
             proxy  = {'http': proxyUtilized}
-            print("proxy is")
-            print(proxy)
+            print("A proxy was used => ",proxy)
+            #print(proxy)
             r = requests.get(webScrapeLink,proxies=proxy)
         try:
             data = r.json()
@@ -334,13 +349,14 @@ def productPlaceholder(self,proxyUtilized,webUrl):
             variantObject=item['variants']
             productAvailable =True;
             if productAvailable ==True:
-                print("Found Dummy Product " +handle)
+                #print("Product found: " +handle)
                 for obj in variantObject:
                     itemId = obj['id']
                     available = obj ['available']
                     if (available==True):
                         finalLink=webUrl+"cart/"+str(itemId)+":1"
-                        print(finalLink)
+                        print("Product found: " +handle," Checkout Link is:",finalLink)
+                        #print(finalLink)
                         return finalLink
                         
 def productMonitor(self,row,proxyUtilized):
@@ -466,19 +482,22 @@ def productMonitor(self,row,proxyUtilized):
         end= time.time()
         executionTime=end-start
         
+
+        print(self.taskStatusBacking)
+        print(self.threadList)
+        webhook = DiscordWebhook(url=self.webhookInput.text(), content="Successful Cart Creation: "+webCartLink+"\nProduct: "+cartedProductName+"\nsize: "+size+"\nExecuted in: "+str(executionTime)+"ms")
+        webhook.execute()
+        
         try:
             for j in range(len(self.taskStatusBacking)):
                 if self.taskStatusBacking[j]==rowSelected:
-                    self.threadList[j].stopTaskFunc()   
-                    self.threadList.pop(j)
-                    self.taskStatusBacking.pop(j)
-            print(self.taskStatusBacking)
-            print(self.threadList)
-            webhook = DiscordWebhook(url=self.webhookInput.text(), content="Successful Cart Creation: "+webCartLink+"\nProduct: "+cartedProductName+"\nsize: "+size+"\nExecuted in: "+str(executionTime)+"ms")
-            response = webhook.execute()
-            return webCartLink
+                    self.threadList[j].stopTaskFunc()  
+            #        self.threadList.pop(j)
+            #        self.taskStatusBacking.pop(j) 
+            return webCartLink           
         except:
             print("Invalid Discord Webhook")
+            return 'invalid'
     else:
         print("Product Not Found, Monitoring Again")
         return 'invalid'
