@@ -13,7 +13,7 @@ E-Commerce ecosystem. During project develpment, I will be showcasing the import
 - Shopify Queue Bypass Implementation
 - Discord Checkout Notification Integration
 
-### Additional Notes
+### Important Notes 📝
 
 - The captchas tab in the UI was not implemented
 - The one profile checkout option was not implemented (Originally meant to prevent multiple orders on the same credit card)
@@ -31,7 +31,7 @@ The latest chrome driver can be downloaded here: https://sites.google.com/a/chro
 
 - <p><a href="https://docs.google.com/document/d/1TjBO5ME-s_Xvvzj3_z5gz0XJhiPSwRK_Nzy4KqFQHkM/edit?usp=sharing">Bandit AIO Guide</a></p>
 
-### PROGRAMMED IN
+### PROGRAMMED Using
 
 <p align="left">
 <a href="https://www.python.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/python-colored.svg" width="36" height="36" alt="Python" /></a>
