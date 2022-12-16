@@ -6,6 +6,7 @@
 E-Commerce ecosystem. During project develpment, I will be showcasing the importance of balancing web traffic protection and how bots depleting limited product negatively impact real customers and could negatively effect web server performance.</p>
 
 ### Video Demo 📺
+- Please use full screen and choose the highest picture quality in the video player!
 - https://youtu.be/SrWzTO-cDCE
 
 ### Features ✨
