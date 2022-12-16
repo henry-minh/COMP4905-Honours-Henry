@@ -5,10 +5,6 @@
 <p>The purpose of this project is to highlight the prevalence and prevention of scalping attacks in the
 E-Commerce ecosystem. During project develpment, I will be showcasing the importance of balancing web traffic protection and how bots depleting limited product negatively impact real customers and could negatively effect web server performance.</p>
 
-### Video Demo 📺
-- Please use full screen and choose the highest picture quality in the video player!
-- https://youtu.be/SrWzTO-cDCE
-
 ### Features ✨
 
 - Product Monitoring (Webscraping)
@@ -16,6 +12,11 @@ E-Commerce ecosystem. During project develpment, I will be showcasing the import
 - Proxy Creation
 - Shopify Queue Bypass Implementation
 - Discord Checkout Notification Integration
+
+### Video Demo 📺
+
+- Please use full screen and choose the highest picture quality in the video player!
+- https://youtu.be/SrWzTO-cDCE
 
 ### Important Notes 📝
 
@@ -29,6 +30,7 @@ The latest chrome driver can be downloaded here: https://sites.google.com/a/chro
 - A discord webhook must be setup for the software to work. If you want to change the Discord webhook key I provided by default, follow the instructions in the Technical Guide section of this README
 
 ### File Details 📚
+
 - main.py - Launch the GUI from here
 - onLoadFunctions.py - Loads the information from settings.json in the GUI
 - taskFunctions.py - Create, Update, Delete Tasks 
@@ -68,6 +70,7 @@ The latest chrome driver can be downloaded here: https://sites.google.com/a/chro
 - Discord-webhook 0.17.0 (Discord notifications for checkouts)
 
 ### Other Tools Used Throughout the Project 💿
+
 - Windows 10
 - Visual Studio Code 1.73.1 (IDE)
 - qt6-applications (GUI creation environment for PyQt6 UI files)
