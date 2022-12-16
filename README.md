@@ -3,7 +3,10 @@
 ### Shopify Checkout Automation Tool
 
 <p>The purpose of this project is to highlight the prevalence and prevention of scalping attacks in the
-E-Commerce ecosystem. During project develpment, I will be showcasing the importance of balancing web traffic protection and how bots depleting limited product negatively impact real customers while negatively effecting the web application's performance.</p>
+E-Commerce ecosystem. During project develpment, I will be showcasing the importance of balancing web traffic protection and how bots depleting limited product negatively impact real customers and could negatively effect web server performance.</p>
+
+### Video Demo 📺
+- https://youtu.be/SrWzTO-cDCE
 
 ### Features ✨
 
@@ -24,7 +27,7 @@ E-Commerce ecosystem. During project develpment, I will be showcasing the import
 The latest chrome driver can be downloaded here: https://sites.google.com/a/chromium.org/chromedriver/downloads
 - A discord webhook must be setup for the software to work. If you want to change the Discord webhook key I provided by default, follow the instructions in the Technical Guide section of this README
 
-### File Details
+### File Details 📚
 - main.py - Launch the GUI from here
 - onLoadFunctions.py - Loads the information from settings.json in the GUI
 - taskFunctions.py - Create, Update, Delete Tasks 
@@ -44,7 +47,7 @@ The latest chrome driver can be downloaded here: https://sites.google.com/a/chro
 
 - <p><a href="https://docs.google.com/document/d/1TjBO5ME-s_Xvvzj3_z5gz0XJhiPSwRK_Nzy4KqFQHkM/edit?usp=sharing">Bandit AIO Guide</a></p>
 
-### PROGRAMMED Using
+### Programmed Using 💻
 
 <p align="left">
 <a href="https://www.python.org/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/python-colored.svg" width="36" height="36" alt="Python" /></a>
@@ -52,7 +55,7 @@ The latest chrome driver can be downloaded here: https://sites.google.com/a/chro
 
 - Python 3.9
 
-### Software FRAMEWORKS & LIBRARIES
+### Software Frameworks & Libraries 📀
 
 <p align="left"> <a href="https://playwright.dev/python/docs/intro" target="_blank" rel="noreferrer"><img src="https://yt3.ggpht.com/9y13pxP3xxovml6W83D4Kbq4joCA-WaKy01i1BAihK6315sPq7z_oTIa3YdGa7ws4k4aaRbf=s900-c-k-c0x00ffffff-no-rj" width="32" height="32" /></a><a href="https://requests.readthedocs.io/en/latest/" target="_blank" rel="noreferrer"><img src="https://upload.wikimedia.org/wikipedia/commons/a/aa/Requests_Python_Logo.png" width="32" height="32" /></a><a href="https://pypi.org/project/discord-webhook/" target="_blank" rel="noreferrer"><img src="https://pypi.org/static/images/logo-small.95de8436.svg" width="32" height="32" /></a><a href="https://pypi.org/project/PyQt6/" target="_blank" rel="noreferrer"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Python_and_Qt.svg/1200px-Python_and_Qt.svg.png" width="32" height="32" /></a></p>
 
@@ -63,7 +66,7 @@ The latest chrome driver can be downloaded here: https://sites.google.com/a/chro
 - PyQt6-tools 6.1.0.1.2
 - Discord-webhook 0.17.0 (Discord notifications for checkouts)
 
-### Other Tools Used Throughout the Project
+### Other Tools Used Throughout the Project 💿
 - Windows 10
 - Visual Studio Code 1.73.1 (IDE)
 - qt6-applications (GUI creation environment for PyQt6 UI files)
