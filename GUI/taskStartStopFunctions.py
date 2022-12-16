@@ -150,28 +150,28 @@ class CustomThread(Thread):
         ##############################
         #(6) Fill out Checkout Page 1 
         select = Select(browser.find_element("id", 'checkout_shipping_address_country'))
-        time.sleep(.01)
+        time.sleep(.05)
         select.select_by_visible_text(profileInfo.get('sCountry'))
-        time.sleep(.01)
+        time.sleep(.05)
         browser.find_element("id", "checkout_email").send_keys(profileInfo.get('email'))
-        time.sleep(.01)
+        time.sleep(.05)
         browser.find_element("id", "checkout_shipping_address_first_name").send_keys(profileInfo.get('sFirstName'))
-        time.sleep(.01)
+        time.sleep(.05)
         browser.find_element("id", "checkout_shipping_address_last_name").send_keys(profileInfo.get('sLastName'))
-        time.sleep(.01)
+        time.sleep(.05)
         browser.find_element("id", "checkout_shipping_address_address1").send_keys(profileInfo.get('sAdd1'))
-        time.sleep(.01)
+        time.sleep(.05)
         browser.find_element("id", "checkout_shipping_address_city").send_keys(profileInfo.get('sCity'))
         select = Select(browser.find_element("id", 'checkout_shipping_address_province'))
-        time.sleep(.01)
+        time.sleep(.05)
         select.select_by_visible_text(profileInfo.get('sProvince'))
-        time.sleep(.01)
+        time.sleep(.05)
         browser.find_element("id", "checkout_shipping_address_zip").send_keys(profileInfo.get('sZip'))
-        time.sleep(.01)
+        time.sleep(.05)
         browser.find_element("id", "checkout_shipping_address_phone").send_keys(profileInfo.get('pPhoneNumber'))
-        time.sleep(.01)
+        time.sleep(.05)
         browser.find_element("id", "checkout_shipping_address_address2").send_keys(profileInfo.get('sAdd2'))
-        time.sleep(.01)
+        time.sleep(.05)
         browser.find_element("id", "continue_button").click()
 
         ##############################
@@ -462,7 +462,7 @@ def productMonitor(self,row,proxyUtilized):
         print("Checkout product found in size ",size," :",webCartLink)
         end= time.time()
         executionTime=end-start
-        webhook = DiscordWebhook(url=self.webhookInput.text(), content="Successful Cart Creation: "+webCartLink+"\nProduct: "+cartedProductName+"\nsize: "+size+"\nExecuted in: "+str(executionTime)+"ms")
+        webhook = DiscordWebhook(url=self.webhookInput.text(), content="Successful Cart Creation: "+webCartLink+"\nProduct: "+cartedProductName+"\nsize: "+size+"\nExecuted in: "+str(executionTime)+" seconds")
         webhook.execute()
         
         try:

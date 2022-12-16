@@ -3,8 +3,6 @@ import onLoadFunctions
 from PyQt6.QtWidgets import *
 
 
-
-
 ##############################################
 #            Delete Profile Button           #
 ############################################## 

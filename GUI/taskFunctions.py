@@ -19,25 +19,19 @@ def clickDeleteTaskBtn(self, event):
         f.close()      
             
         #Delete index in Backing Array and thread array
-        #print("before stoping thread and popping index from backing array")
-        #print(self.taskStatusBacking)
+
         for j in range(len(self.taskStatusBacking)):
             if self.taskStatusBacking[j]==r:
                 self.threadList[j].stopTaskFunc()
                 self.threadList.pop(j)   
                 self.taskStatusBacking.pop(j)
                 break
-        #print("after stoping thread and popping index from backing array")    
-        #print(self.taskStatusBacking)
 
-        #print("before shifting backing array for out of bound")
         #If the task table shifted down in size, we need to adjust running tasks to prevent index out of bounds
         for j in range(len(self.taskStatusBacking)):
             if self.taskStatusBacking[j]>r:
                 self.threadList[j].taskDeletedAdjust()
                 self.taskStatusBacking[j]=self.taskStatusBacking[j]-1
-        #print("after shifting backing array for out of bound")
-        #print(self.taskStatusBacking)
 
         onLoadFunctions.loadTaskPageInitial(self)   
 
@@ -68,9 +62,7 @@ def clickEditTaskBtn(self, event):
 #            Create Task Button              #
 ############################################## 
 def clickCreateTaskBtn(self, event):
-    #isValidTask=True
     profileSelected=False
-    #proxySelected=False
     taskValueList=[]
     taskValueList.append(self.keyWordInput.toPlainText())
     taskValueList.append(self.homePageInput.text())
@@ -81,7 +73,6 @@ def clickCreateTaskBtn(self, event):
     #Error check if a task is even selected
     for x in taskValueList:
         if x == "":
-            #isValidTask=False
             return
     
     for i in range(0,len(self.profileCheckboxes)):
@@ -90,7 +81,7 @@ def clickCreateTaskBtn(self, event):
     if(profileSelected==False ):
         return
     
-    #Retieve Keywords (poitive and negative)
+    #Retrieve Keywords (positive and negative)
     keyList = self.keyWordInput.toPlainText().split(',')
     sizeList=self.sizeInput.text().split(',')
     posKeyList=[]

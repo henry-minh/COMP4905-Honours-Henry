@@ -2,6 +2,7 @@ import json
 from PyQt6.QtWidgets import *
 from discord_webhook import DiscordWebhook
 
+
 def clickWebHookBtn(self, event):
     f=open('./GUI/settings.json',"r")
     data=json.load(f)

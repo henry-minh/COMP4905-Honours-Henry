@@ -53,7 +53,6 @@ def clickComboProxyBtn(self, event):
     for i in range (0,len(data['proxies'])):
         if(data['proxies'][i]['proxyGroupName']==self.proxyGroupInput.text()):
             for j in range(0,len(data['proxies'][i]['proxyList'])):
-                print(data['proxies'][i]['proxyList'][j])
                 self.editProxyInput.insertPlainText(data['proxies'][i]['proxyList'][j])
                 if(j!=len(data['proxies'][i]['proxyList'])-1):
                     self.editProxyInput.insertPlainText(",")

@@ -1,16 +1,11 @@
-#Imports I actually Do Need
 import json
 from PyQt6.QtWidgets import *
 from PyQt6 import QtWidgets
-
 from PyQt6.QtCore import *
 
 #Used for threading
 from threading import Event
 
-#Imports I dont think I need
-#from time import sleep
-#from threading import Thread
 ##############################################
 #        Onload Profile Page Table           #
 ############################################## 
