@@ -114,6 +114,7 @@ class CustomThread(Thread):
         #      Product Monitor       #
         ##############################
         #(4) Product Monitor Loop
+        delayFlag=False
         while not self.event.is_set() :
             self.gui.taskTable.setItem(self.rowSelected,6,QTableWidgetItem('Monitoring'))
             if self.stopTask==True:
@@ -122,8 +123,12 @@ class CustomThread(Thread):
             if productFound=='invalid':
                 print("invalid url, Thread now closing")
                 return 
-            delay=float(settingsData['tasks'][self.rowSelected]['delay'])/1000    
-            sleep(delay)
+            if delayFlag == True:
+                
+                delay=float(settingsData['tasks'][self.rowSelected]['delay'])/1000
+                print("Product Monitor Delaying for ", delay, " seconds")    
+                sleep(delay)
+            delayFlag=True
         
         ##############################
         #    (Cart Actual Product)   #
@@ -341,7 +346,7 @@ def productPlaceholder(self,proxyUtilized,webUrl):
                     available = obj ['available']
                     if (available==True):
                         finalLink=webUrl+"cart/"+str(itemId)+":1"
-                        print("Product found: " +handle," Checkout Link is:",finalLink)
+                        print("Placeholder product found: " +handle)
                         return finalLink
                         
 def productMonitor(self,row,proxyUtilized):
@@ -383,7 +388,7 @@ def productMonitor(self,row,proxyUtilized):
         
     else:
         end= time.time()
-        print("No Row Selected, Exectuion Time = ",end-start,"ms")
+        print("No Row Selected, Exectuion Time = ",end-start," seconds")
         return
     
     if "random" in userSizeList:
@@ -454,7 +459,7 @@ def productMonitor(self,row,proxyUtilized):
                         break
                 
     if(validCartId==True):
-        print("Availible product found in size ",size," :",webCartLink)
+        print("Checkout product found in size ",size," :",webCartLink)
         end= time.time()
         executionTime=end-start
         webhook = DiscordWebhook(url=self.webhookInput.text(), content="Successful Cart Creation: "+webCartLink+"\nProduct: "+cartedProductName+"\nsize: "+size+"\nExecuted in: "+str(executionTime)+"ms")
