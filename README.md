@@ -13,10 +13,9 @@ E-Commerce ecosystem. During project develpment, I will be showcasing the import
 - Shopify Queue Bypass Implementation
 - Discord Checkout Notification Integration
 
-### Video Demo 📺
+### Formal Report 📑
 
-- Please use full screen and choose the highest picture quality in the video player!
-- https://youtu.be/SrWzTO-cDCE
+- https://docs.google.com/document/d/1PFFtFtht0j1G-6qpK4L7jKgKUDyKLR9o3rgGptPK4Sg/edit?usp=sharing
 
 ### Important Notes 📝
 
